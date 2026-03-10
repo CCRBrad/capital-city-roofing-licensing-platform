@@ -1,0 +1,290 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+@plugin "tailwindcss-animate";
+
+@theme {
+  --font-sans: "Urbanist", sans-serif;
+  --font-heading: "Urbanist", sans-serif;
+  --font-display: "Oswald", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  /* Capital City Core Theme */
+  --color-navy-950: #061837;
+  --color-navy-900: #0d274e;
+  --color-navy-800: #1a4073;
+  --color-navy-700: #265999;
+
+  /* Semantic Variables */
+  --color-primary: var(--color-navy-900);
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #da1a1a;
+  --color-secondary-foreground: #ffffff;
+  --color-accent-gold: hsl(38, 75%, 50%);
+  --color-accent-foreground: #ffffff;
+  --color-success: #10b981;
+  --color-warning: hsl(38, 75%, 50%);
+  --color-info: #3b82f6;
+
+  --shadow-navy-sm: 0 1px 2px 0 rgba(10, 35, 66, 0.05);
+  --shadow-navy-md: 0 4px 6px -1px rgba(10, 35, 66, 0.1), 0 2px 4px -2px rgba(10, 35, 66, 0.1);
+  --shadow-navy-lg: 0 10px 15px -3px rgba(10, 35, 66, 0.1), 0 4px 6px -4px rgba(10, 35, 66, 0.1);
+  --shadow-navy-xl: 0 20px 25px -5px rgba(10, 35, 66, 0.1), 0 8px 10px -6px rgba(10, 35, 66, 0.1);
+  --shadow-navy-2xl: 0 25px 50px -12px rgba(10, 35, 66, 0.25);
+  --shadow-glow-gold: 0 0 15px rgba(224, 169, 31, 0.5);
+  --shadow-glow-red: 0 0 15px rgba(200, 16, 46, 0.5);
+
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-slide-in-left: slideInLeft 0.5s ease-out;
+  --animate-slide-in-right: slideInRight 0.5s ease-out;
+  --animate-scale-in: scaleIn 0.3s ease-out;
+  --animate-float: float 3s ease-in-out infinite;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #0a2342;
+  --primary-foreground: #ffffff;
+  --secondary: #c8102e;
+  --secondary-foreground: #ffffff;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
+  --accent-foreground: #000000;
+  --destructive: #c8102e;
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0a2342;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #051121;
+  --foreground: #ffffff;
+  --card: #0a2342;
+  --card-foreground: #ffffff;
+  --popover: #0a2342;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #0a2342;
+  --secondary: #c8102e;
+  --secondary-foreground: #ffffff;
+  --muted: #0f3460;
+  --muted-foreground: #9ca3af;
+  --accent: #0f3460;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #1e3a8a;
+  --input: #1e3a8a;
+  --ring: #3b82f6;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: var(--ring);
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-navy-lg hover:-translate-y-1;
+  }
+
+  .bg-hero-gradient {
+    background: linear-gradient(135deg, var(--color-navy-950) 0%, var(--color-navy-800) 50%, var(--color-navy-900) 100%);
+  }
+
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-navy-sm;
+  }
+
+  .glass-dark {
+    @apply bg-navy-900/40 backdrop-blur-md border border-navy-800/50 shadow-navy-md;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(to right, hsl(38, 75%, 50%), hsl(45, 90%, 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-red {
+    background: linear-gradient(to right, var(--secondary), #e61234);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .link-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+}
