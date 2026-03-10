@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SEOHead } from '../../components/SEOHead';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
-import { Users, Target, CheckCircle2, Trophy, Star, TrendingUp, Calculator, ShieldCheck } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
+import { Target, Trophy, Star, TrendingUp, Calculator, ShieldCheck } from 'lucide-react';
 import { teamData } from '../../data/teamData';
 
 const TeamDashboard: React.FC = () => {
@@ -42,8 +42,8 @@ const TeamDashboard: React.FC = () => {
                             key={tracker.role}
                             onClick={() => setActiveTrackerRole(tracker.role)}
                             className={`px-6 py-2.5 rounded-md font-bold text-sm uppercase tracking-widest transition-all ${activeTrackerRole === tracker.role
-                                    ? 'bg-navy-950 text-white shadow-md'
-                                    : 'bg-white text-navy-900 border border-border hover:border-navy-300 hover:bg-navy-50'
+                                ? 'bg-navy-950 text-white shadow-md'
+                                : 'bg-white text-navy-900 border border-border hover:border-navy-300 hover:bg-navy-50'
                                 }`}
                         >
                             {tracker.role}

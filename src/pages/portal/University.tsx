@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { SEOHead } from '../../components/SEOHead';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card';
-import { PlayCircle, ShieldAlert, CheckCircle2, Trophy, ArrowRight, FileText, HelpCircle, Gamepad2, Brain, Lock, Star, Award, BarChart3, BookOpen } from 'lucide-react';
+import { PlayCircle, ShieldAlert, CheckCircle2, Trophy, FileText, Gamepad2, Brain, Lock, Star, Award, BarChart3, BookOpen } from 'lucide-react';
 import { useUniversityProgress, LEVEL_THRESHOLDS, getNextLevelXP } from '../../contexts/UniversityProgressContext';
 
 // Curriculum Data
@@ -169,8 +169,8 @@ const University: React.FC = () => {
                                                 onClick={(e) => !unlocked && e.preventDefault()}
                                             >
                                                 <Card className={`group transition-all h-full ${completed ? 'border-green-300 bg-green-50/30 shadow-sm' :
-                                                        unlocked ? 'hover:border-navy-300 cursor-pointer shadow-sm hover:shadow-md' :
-                                                            'opacity-50 border-border'
+                                                    unlocked ? 'hover:border-navy-300 cursor-pointer shadow-sm hover:shadow-md' :
+                                                        'opacity-50 border-border'
                                                     }`}>
                                                     <CardContent className="p-6">
                                                         <div className="flex justify-between items-start mb-4">

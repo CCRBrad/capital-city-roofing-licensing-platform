@@ -2,7 +2,7 @@ import React from 'react';
 import { SEOHead } from '../../components/SEOHead';
 import { Card, CardContent } from '../../components/ui/card';
 import { Trophy, TrendingUp, Flame, Medal } from 'lucide-react';
-import { useUniversityProgress, LEVEL_THRESHOLDS } from '../../contexts/UniversityProgressContext';
+import { useUniversityProgress } from '../../contexts/UniversityProgressContext';
 
 const Leaderboard: React.FC = () => {
     const { leaderboard, progress } = useUniversityProgress();
