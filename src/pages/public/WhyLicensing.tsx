@@ -1,21 +1,12 @@
-import React from 'react';
-import { SEOHead } from '../../components/SEOHead';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const WhyLicensing: React.FC = () => {
-    return (
-        <>
-            <SEOHead 
-                title="Why Licensing Over Franchising? | CCR" 
-                description="Learn more about WhyLicensing with Capital City Roofing Licensed Operating Platform." 
-            />
-            <section className="py-32 bg-navy-950 text-white text-center">
-                <div className="container-custom">
-                    <h1 className="text-5xl font-black font-display uppercase tracking-tight mb-6">Why Licensing Over Franchising?</h1>
-                    <p className="text-xl text-white/80 max-w-2xl mx-auto">This page is currently under structure development as we build out the full platform.</p>
-                </div>
-            </section>
-        </>
-    );
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate('/the-model', { replace: true });
+    }, [navigate]);
+    return null;
 };
 
 export default WhyLicensing;

@@ -73,6 +73,15 @@ export const StateLicensing: React.FC = () => {
                     </Link>
                 </div>
             </section>
+
+            {/* Licensing Compliance Note */}
+            <div className="bg-muted py-4">
+                <div className="container-custom">
+                    <p className="text-[11px] text-muted-foreground/60 leading-relaxed max-w-4xl mx-auto text-center">
+                        Capital City Roofing licenses its brand, operating systems, training curriculum, and technology platform to qualified market partners. Licensed operators are independent business owners responsible for meeting all applicable state and local contractor licensing, registration, insurance, and compliance requirements in their respective markets. Capital City Roofing does not issue contractor licenses.
+                    </p>
+                </div>
+            </div>
         </>
     );
 };
