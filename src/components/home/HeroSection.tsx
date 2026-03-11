@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { SVGCurve } from '../../components/ui/SVGCurve';
 import { HeroLeadForm } from '../../components/conversion/HeroLeadForm';
-import { CheckCircle2, TrendingUp, ShieldCheck, Zap } from 'lucide-react';
+import { CheckCircle2, TrendingUp, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
     // Ticker implementation
     const messages = [
-        "Revenue Managed: $50M+",
-        "Feeding the Future: 10,000+ meals",
-        "AI-Powered Automation",
-        "35%+ Average Profit Margins"
+        "GAF Master Elite — Top 2% Nationwide",
+        "Feeding the Future: 10,000+ Meals Donated",
+        "AI-Powered Lead Gen, CRM & Automation",
+        "Operators Averaging 35%+ Profit Margins"
     ];
 
     const [tickerIndex, setTickerIndex] = useState(0);
@@ -34,10 +35,10 @@ export const HeroSection: React.FC = () => {
 
             <div className="container-custom relative z-10 mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
                 {/* Left Column: Copy */}
-                <div className="space-y-8 animate-slide-in-left">
+                <div className="space-y-6 animate-slide-in-left">
                     <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-navy-800 border border-white/10 shadow-navy-md">
                         <span className="w-2 h-2 rounded-full bg-success animate-pulse"></span>
-                        <span className="text-xs font-bold uppercase tracking-widest">Now Accepting Licensed Operators</span>
+                        <span className="text-xs font-bold uppercase tracking-widest">Now Accepting Market Partners</span>
                     </div>
 
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-display uppercase tracking-tight leading-tight">
@@ -46,19 +47,19 @@ export const HeroSection: React.FC = () => {
                     </h1>
 
                     <p className="text-xl md:text-2xl text-white/90 font-medium max-w-xl leading-relaxed">
-                        Join the Capital City Roofing Licensed Operating Platform. Powered by Innovation & Integrity.
+                        Launch or scale a roofing business with the Capital City Roofing brand, systems, training, and AI-powered operating platform.
                     </p>
 
-                    <p className="text-sm font-bold text-white/70 uppercase tracking-widest border-l-2 border-secondary pl-4">
-                        "If it isn't in the system, it didn't happen."
+                    <p className="text-base text-white/70 max-w-lg leading-relaxed border-l-2 border-secondary pl-4">
+                        A franchise alternative for qualified operators who want proven playbooks, partner support, and scalable market infrastructure — without building everything from scratch.
                     </p>
 
-                    <ul className="space-y-4 pt-2">
+                    <ul className="space-y-3 pt-2">
                         {[
-                            { icon: TrendingUp, text: "High-Margin Business (35%+) " },
-                            { icon: Zap, text: "14-Day Onboarding" },
-                            { icon: ShieldCheck, text: "Protected Market Territory" },
-                            { icon: CheckCircle2, text: "Complete AI Toolkit Included" },
+                            { icon: TrendingUp, text: "35%+ Avg. Profit Margins from Day One" },
+                            { icon: Zap, text: "Launch-Ready in 14 Days — Not 14 Months" },
+                            { icon: ShieldCheck, text: "Protected Market Territory & Exclusive Leads" },
+                            { icon: CheckCircle2, text: "Brand, Training, AI, CRM & Back-Office Included" },
                         ].map((item, index) => (
                             <li key={index} className="flex items-center space-x-3 text-lg font-bold">
                                 <item.icon className="w-6 h-6 text-success shrink-0" />
@@ -67,10 +68,20 @@ export const HeroSection: React.FC = () => {
                         ))}
                     </ul>
 
-                    <div className="flex justify-start space-x-4 pt-4">
-                        <p className="text-white/60 text-sm font-semibold">
-                            Trusted by Licensed Operators in 6 Markets
-                        </p>
+                    <div className="flex flex-wrap gap-4 pt-4">
+                        <Link
+                            to="/apply"
+                            className="inline-flex items-center space-x-2 bg-secondary hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-md transition-all text-sm uppercase tracking-widest shadow-glow-red hover:shadow-glow-red/80"
+                        >
+                            <span>Apply to Become a Partner</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </Link>
+                        <Link
+                            to="/the-model"
+                            className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-bold py-3.5 px-8 rounded-md transition-all text-sm uppercase tracking-widest border border-white/20"
+                        >
+                            <span>See How the Model Works</span>
+                        </Link>
                     </div>
                 </div>
 

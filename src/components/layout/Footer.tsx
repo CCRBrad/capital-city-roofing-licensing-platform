@@ -119,6 +119,15 @@ export const Footer: React.FC = () => {
                 </div>
             </div>
 
+            {/* Licensing Disclaimer */}
+            <div className="border-t border-white/5 bg-navy-950">
+                <div className="container-custom py-4">
+                    <p className="text-[11px] text-white/30 leading-relaxed max-w-4xl">
+                        Capital City Roofing licenses its brand, operating systems, training curriculum, and technology platform to qualified market partners. Licensed operators are independent business owners responsible for meeting all applicable state and local contractor licensing, registration, insurance, and compliance requirements in their respective markets. Capital City Roofing does not issue contractor licenses.
+                    </p>
+                </div>
+            </div>
+
             {/* Bottom Bar */}
             <div className="border-t border-white/10 bg-navy-950">
                 <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-sm">

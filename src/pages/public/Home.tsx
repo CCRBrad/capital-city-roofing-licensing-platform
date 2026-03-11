@@ -23,7 +23,12 @@ import {
     PlayCircle,
     FileText,
     Rocket,
-    ArrowRight
+    ArrowRight,
+    Briefcase,
+    Cpu,
+    CheckCircle2,
+    Target,
+    Zap
 } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -68,16 +73,79 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
+            {/* Audience Segmentation */}
+            <section className="py-20 bg-white relative">
+                <div className="container-custom">
+                    <div className="text-center max-w-3xl mx-auto mb-12">
+                        <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">Who Is This For?</span>
+                        <h2 className="text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-primary mb-4">
+                            Built for Builders, Backed by Data
+                        </h2>
+                        <p className="text-lg text-muted-foreground">
+                            Whether you're launching a market, investing in growth, or bringing technology to the industry — there's a seat at the table.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <Card className="border-border shadow-navy-sm card-hover bg-navy-950 text-white relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                            <CardHeader className="relative z-10">
+                                <div className="w-14 h-14 rounded-xl bg-secondary/20 flex items-center justify-center mb-4">
+                                    <Target className="w-7 h-7 text-secondary" />
+                                </div>
+                                <CardTitle className="text-2xl font-black text-white uppercase tracking-tight">Market Operators</CardTitle>
+                            </CardHeader>
+                            <CardContent className="relative z-10">
+                                <p className="text-white/80 mb-6">Independent contractors and sales leaders ready to launch or scale a roofing business under the CCR brand with full operational support.</p>
+                                <Link to="/apply" className="inline-flex items-center text-secondary font-bold text-sm uppercase tracking-widest hover:text-[hsl(38,75%,50%)] transition-colors">
+                                    Apply Now <ArrowRight className="w-4 h-4 ml-2" />
+                                </Link>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-border shadow-navy-sm card-hover">
+                            <CardHeader>
+                                <div className="w-14 h-14 rounded-xl bg-primary/5 flex items-center justify-center mb-4">
+                                    <Briefcase className="w-7 h-7 text-primary" />
+                                </div>
+                                <CardTitle className="text-2xl font-black text-primary uppercase tracking-tight">Strategic Investors</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground mb-6">Invest in a proven roofing operating model with transparent metrics, scalable markets, and a leadership team that runs on EOS and data.</p>
+                                <Link to="/investment" className="inline-flex items-center text-secondary font-bold text-sm uppercase tracking-widest hover:text-primary transition-colors">
+                                    View Investment Thesis <ArrowRight className="w-4 h-4 ml-2" />
+                                </Link>
+                            </CardContent>
+                        </Card>
+
+                        <Card className="border-border shadow-navy-sm card-hover">
+                            <CardHeader>
+                                <div className="w-14 h-14 rounded-xl bg-primary/5 flex items-center justify-center mb-4">
+                                    <Cpu className="w-7 h-7 text-[hsl(38,75%,50%)]" />
+                                </div>
+                                <CardTitle className="text-2xl font-black text-primary uppercase tracking-tight">Technology Partners</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground mb-6">Industry partners and suppliers who want to integrate with the CCR ecosystem — AI, CRM, estimating, materials, and automation.</p>
+                                <Link to="/tech-stack" className="inline-flex items-center text-secondary font-bold text-sm uppercase tracking-widest hover:text-primary transition-colors">
+                                    See the Tech Stack <ArrowRight className="w-4 h-4 ml-2" />
+                                </Link>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </section>
+
             {/* Value Props */}
             <section className="py-24 bg-muted relative">
                 <div className="container-custom">
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">The Toolkit</span>
+                        <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">What You Get</span>
                         <h2 className="text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-primary mb-6">
-                            Everything You Need to Scale
+                            Brand. Systems. Training. Support.
                         </h2>
                         <p className="text-lg text-muted-foreground">
-                            We provide the back-office infrastructure, premium branding, and technology stack. You focus on what you do best: selling roofs and building relationships.
+                            Every CCR partner receives the full operating infrastructure — back-office, premium brand, AI-powered tech stack, and continuous support. You focus on closing deals and building relationships.
                         </p>
                     </div>
 
@@ -105,6 +173,73 @@ const Home: React.FC = () => {
                     </div>
                 </div>
                 <SVGCurve position="bottom" fill="#ffffff" />
+            </section>
+
+            {/* Why Capital City Roofing? — Proof & Authority */}
+            <section className="py-24 bg-white relative">
+                <div className="container-custom">
+                    <div className="text-center max-w-3xl mx-auto mb-16">
+                        <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">Why CCR?</span>
+                        <h2 className="text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-primary mb-6">
+                            Why Capital City Roofing?
+                        </h2>
+                        <p className="text-lg text-muted-foreground">
+                            We're not a startup selling a dream. We're an active, scaled roofing operation that built the systems first — and now we're licensing them.
+                        </p>
+                    </div>
+
+                    {/* Credential Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                        {[
+                            { stat: 'Top 2%', label: 'GAF Master Elite Contractor', sub: 'Nationwide' },
+                            { stat: '$50M+', label: 'Revenue Managed', sub: 'Across all markets' },
+                            { stat: '14 Days', label: 'Launch-Ready', sub: 'Not 14 months' },
+                            { stat: '35%+', label: 'Avg. Profit Margin', sub: 'Operator average' },
+                        ].map((item, idx) => (
+                            <div key={idx} className="text-center p-6 rounded-xl bg-navy-50 border border-navy-100">
+                                <p className="text-3xl md:text-4xl font-black font-display text-navy-950 mb-1">{item.stat}</p>
+                                <p className="text-sm font-bold text-navy-800 uppercase tracking-widest mb-1">{item.label}</p>
+                                <p className="text-xs text-muted-foreground">{item.sub}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* 30/60/90 Day Timeline */}
+                    <div className="bg-navy-950 rounded-2xl p-8 md:p-12 text-white relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+                        <div className="relative z-10">
+                            <h3 className="text-2xl md:text-3xl font-black font-display uppercase tracking-tight mb-2 text-center">Your First 90 Days</h3>
+                            <p className="text-white/70 text-center mb-10 max-w-2xl mx-auto">Here's exactly what a new partner can expect after joining.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {[
+                                    { days: 'Days 1–14', title: 'Launch', icon: Rocket, items: ['Complete Capital City University', 'LLC formation & compliance', 'Tech stack connected (CRM, AI, Roofr)', 'Territory defined & protected', 'First leads flowing'] },
+                                    { days: 'Days 15–30', title: 'Activate', icon: Zap, items: ['First appointments set', 'Running the 8-Step Selling System', 'Back-office writing estimates & supplements', 'Daily activity tracking live', 'First deals under contract'] },
+                                    { days: 'Days 31–90', title: 'Scale', icon: TrendingUp, items: ['Revenue ramping consistently', 'Hiring first team members', 'Advanced training modules unlocked', 'Commission & bonus tiers activated', 'Leaderboard ranking established'] },
+                                ].map((phase, idx) => (
+                                    <div key={idx} className="bg-white/5 border border-white/10 rounded-xl p-6">
+                                        <div className="flex items-center space-x-3 mb-4">
+                                            <div className="w-10 h-10 rounded-lg bg-secondary/20 flex items-center justify-center">
+                                                <phase.icon className="w-5 h-5 text-secondary" />
+                                            </div>
+                                            <div>
+                                                <p className="text-xs font-bold text-[hsl(38,75%,50%)] uppercase tracking-widest">{phase.days}</p>
+                                                <p className="font-black font-heading text-lg">{phase.title}</p>
+                                            </div>
+                                        </div>
+                                        <ul className="space-y-2">
+                                            {phase.items.map((item, idy) => (
+                                                <li key={idy} className="flex items-start text-sm text-white/80">
+                                                    <CheckCircle2 className="w-4 h-4 text-success mr-2 mt-0.5 shrink-0" />
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             {/* Video Section */}
@@ -243,7 +378,8 @@ const Home: React.FC = () => {
                             { q: 'Do I need prior roofing experience?', a: 'No. Capital City University provides a rigorous 14-to-21-day training curriculum covering everything from sales and production to financial management. We prefer strong sales/leadership backgrounds over technical roofing experience.' },
                             { q: 'What does the 5% royalty cover?', a: 'It covers your access to the complete licensed operator platform: the tech stack (CRM, AI agents, estimating software), the centralized back-office support, continuous marketing assets, and national brand leverage with suppliers.' },
                             { q: 'Are territories protected?', a: 'Yes. We map out exclusive, protected market territories to ensure our licensed operators are never competing against each other.' },
-                            { q: 'What is the initial investment entirely?', a: 'The initial licensing buy-in is $15,000. We recommend having an additional $30,000 to $50,000 in working capital to cover your LLC formation, initial marketing spend, and personal expenses during the ramp-up phase.' }
+                            { q: 'What is the initial investment entirely?', a: 'The initial licensing buy-in is $15,000. We recommend having an additional $30,000 to $50,000 in working capital to cover your LLC formation, initial marketing spend, and personal expenses during the ramp-up phase.' },
+                            { q: 'Does CCR provide a roofing license?', a: 'CCR licenses its brand, operating systems, training, and technology platform to qualified partners. Partners are responsible for meeting any required state and local contractor licensing, registration, or insurance requirements in their market. CCR provides guidance on compliance readiness and state-specific requirements, but does not issue contractor licenses.' }
                         ].map((faq, idx) => (
                             <AccordionItem key={idx} value={`item-${idx}`} className="border rounded-lg px-6 bg-muted lg:hover:bg-gray-100 transition-colors">
                                 <AccordionTrigger className="text-left font-bold text-lg md:text-xl text-primary py-6 hover:no-underline">{faq.q}</AccordionTrigger>

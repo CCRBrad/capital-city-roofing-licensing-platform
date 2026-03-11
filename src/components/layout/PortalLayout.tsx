@@ -24,17 +24,47 @@ interface NavItem {
     roles: UserRole[];
 }
 
-const navItems: NavItem[] = [
-    { name: 'Dashboard', path: '/portal/dashboard', icon: LayoutDashboard, roles: ['prospect', 'licensee', 'employee', 'admin'] },
-    { name: 'University', path: '/portal/university', icon: GraduationCap, roles: ['prospect', 'licensee', 'employee', 'admin'] },
-    { name: 'Financials', path: '/portal/financials', icon: PieChart, roles: ['licensee', 'admin'] },
-    { name: 'Assets', path: '/portal/assets', icon: Files, roles: ['licensee', 'employee', 'admin'] },
-    { name: 'SOPs', path: '/portal/sops', icon: FileText, roles: ['licensee', 'employee', 'admin'] },
-    { name: 'Production', path: '/portal/production', icon: Wrench, roles: ['licensee', 'admin'] },
-    { name: 'Team', path: '/portal/team', icon: Users, roles: ['licensee', 'admin'] },
-    { name: 'Support', path: '/portal/support', icon: Headset, roles: ['prospect', 'licensee', 'employee', 'admin'] },
-    { name: 'Profile', path: '/portal/profile', icon: UserCircle, roles: ['prospect', 'licensee', 'employee', 'admin'] },
-    { name: 'Admin Panel', path: '/portal/admin', icon: ShieldAlert, roles: ['admin'] },
+interface NavGroup {
+    label: string;
+    items: NavItem[];
+}
+
+const navGroups: NavGroup[] = [
+    {
+        label: '',
+        items: [
+            { name: 'Dashboard', path: '/portal/dashboard', icon: LayoutDashboard, roles: ['prospect', 'licensee', 'employee', 'admin'] },
+        ]
+    },
+    {
+        label: 'Learn',
+        items: [
+            { name: 'University', path: '/portal/university', icon: GraduationCap, roles: ['prospect', 'licensee', 'employee', 'admin'] },
+            { name: 'SOPs', path: '/portal/sops', icon: FileText, roles: ['licensee', 'employee', 'admin'] },
+        ]
+    },
+    {
+        label: 'Operate',
+        items: [
+            { name: 'Assets', path: '/portal/assets', icon: Files, roles: ['licensee', 'employee', 'admin'] },
+            { name: 'Production', path: '/portal/production', icon: Wrench, roles: ['licensee', 'admin'] },
+            { name: 'Team', path: '/portal/team', icon: Users, roles: ['licensee', 'admin'] },
+            { name: 'Support', path: '/portal/support', icon: Headset, roles: ['prospect', 'licensee', 'employee', 'admin'] },
+        ]
+    },
+    {
+        label: 'Measure',
+        items: [
+            { name: 'Financials', path: '/portal/financials', icon: PieChart, roles: ['licensee', 'admin'] },
+        ]
+    },
+    {
+        label: 'Account',
+        items: [
+            { name: 'Profile', path: '/portal/profile', icon: UserCircle, roles: ['prospect', 'licensee', 'employee', 'admin'] },
+            { name: 'Admin Panel', path: '/portal/admin', icon: ShieldAlert, roles: ['admin'] },
+        ]
+    },
 ];
 
 export const PortalLayout: React.FC = () => {
@@ -46,7 +76,12 @@ export const PortalLayout: React.FC = () => {
         return <div className="p-8 text-center bg-navy-950 min-h-screen">Please login to access the portal.</div>;
     }
 
-    const filteredNav = navItems.filter(item => item.roles.includes(user.role));
+    // Flatten for lookup
+    const allNavItems = navGroups.flatMap(g => g.items);
+    const filteredGroups = navGroups.map(group => ({
+        ...group,
+        items: group.items.filter(item => item.roles.includes(user.role))
+    })).filter(group => group.items.length > 0);
 
     const statusColor =
         user.complianceStatus === 'green' ? 'bg-success' :
@@ -69,24 +104,38 @@ export const PortalLayout: React.FC = () => {
                     </button>
                 </div>
 
-                <nav className="flex-1 overflow-y-auto py-4 flex flex-col gap-1 px-2">
-                    {filteredNav.map((item) => {
-                        const isActive = location.pathname.startsWith(item.path);
-                        const Icon = item.icon;
+                <nav className="flex-1 overflow-y-auto py-4 flex flex-col px-2">
+                    {filteredGroups.map((group, gIdx) => (
+                        <div key={gIdx} className={gIdx > 0 ? 'mt-4' : ''}>
+                            {group.label && sidebarOpen && (
+                                <p className="px-3 mb-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">
+                                    {group.label}
+                                </p>
+                            )}
+                            {gIdx > 0 && !sidebarOpen && (
+                                <div className="mx-3 mb-2 border-t border-white/10"></div>
+                            )}
+                            <div className="flex flex-col gap-0.5">
+                                {group.items.map((item) => {
+                                    const isActive = location.pathname.startsWith(item.path);
+                                    const Icon = item.icon;
 
-                        return (
-                            <Link
-                                key={item.name}
-                                to={item.path}
-                                className={`flex items-center space-x-3 px-3 py-2.5 rounded-md transition-colors ${isActive ? 'bg-secondary text-white font-bold' : 'text-white/70 hover:bg-white/5 hover:text-white font-medium'
-                                    }`}
-                                title={!sidebarOpen ? item.name : undefined}
-                            >
-                                <Icon size={20} className={isActive ? 'text-white' : 'text-white/70'} />
-                                {sidebarOpen && <span>{item.name}</span>}
-                            </Link>
-                        );
-                    })}
+                                    return (
+                                        <Link
+                                            key={item.name}
+                                            to={item.path}
+                                            className={`flex items-center space-x-3 px-3 py-2.5 rounded-md transition-colors ${isActive ? 'bg-secondary text-white font-bold' : 'text-white/70 hover:bg-white/5 hover:text-white font-medium'
+                                                }`}
+                                            title={!sidebarOpen ? item.name : undefined}
+                                        >
+                                            <Icon size={20} className={isActive ? 'text-white' : 'text-white/70'} />
+                                            {sidebarOpen && <span>{item.name}</span>}
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
                 </nav>
 
                 <div className="p-4 border-t border-white/10 shrink-0">
@@ -109,7 +158,7 @@ export const PortalLayout: React.FC = () => {
                 <header className="h-16 bg-white border-b border-border flex items-center justify-between px-6 shrink-0 z-10 shadow-sm">
                     <div className="flex items-center space-x-4">
                         <h1 className="text-xl font-bold font-heading text-primary hidden md:block">
-                            {filteredNav.find(n => location.pathname.startsWith(n.path))?.name || 'Portal'}
+                            {allNavItems.find(n => location.pathname.startsWith(n.path))?.name || 'Portal'}
                         </h1>
                     </div>
 

@@ -193,6 +193,11 @@ const Apply: React.FC = () => {
                             </form>
                         )}
                     </div>
+
+                    {/* Licensing Compliance Note */}
+                    <p className="text-center text-white/30 text-xs mt-6 max-w-lg mx-auto leading-relaxed">
+                        By applying, you acknowledge that Capital City Roofing licenses its brand, operating systems, and training platform. Licensed operators are independent business owners responsible for all applicable state and local contractor licensing, insurance, and compliance requirements in their market.
+                    </p>
                 </div>
             </section>
         </>
