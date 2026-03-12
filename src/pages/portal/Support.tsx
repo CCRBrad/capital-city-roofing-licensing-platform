@@ -57,7 +57,7 @@ const Support: React.FC = () => {
                         Partner Support
                     </h1>
                     <p className="text-white/80 max-w-2xl">
-                        24/7 dedicated support for all licensed operators. Submit a ticket or reach out directly.
+                        Dedicated partner support for all licensed operators. Submit a ticket or reach out directly.
                     </p>
                 </div>
             </div>
@@ -96,7 +96,7 @@ const Support: React.FC = () => {
                         <div>
                             <h4 className="font-bold text-navy-950 mb-1">Emergency Line</h4>
                             <p className="text-sm text-muted-foreground mb-2">Production issues only</p>
-                            <span className="text-navy-950 font-bold text-sm">24/7 Available</span>
+                            <span className="text-navy-950 font-bold text-sm">After-Hours Available</span>
                         </div>
                     </CardContent>
                 </Card>

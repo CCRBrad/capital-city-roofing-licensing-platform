@@ -37,7 +37,7 @@ const PartnerLogin: React.FC = () => {
                                 { icon: BarChart3, label: 'Performance Dashboard' },
                                 { icon: FileText, label: 'Marketing Assets' },
                                 { icon: ShieldCheck, label: 'Compliance Center' },
-                                { icon: Headset, label: '24/7 Partner Support' },
+                                { icon: Headset, label: 'Dedicated Partner Support' },
                             ].map((item, idx) => (
                                 <div key={idx} className="flex items-center space-x-2 text-sm">
                                     <item.icon className="w-4 h-4 text-secondary shrink-0" />

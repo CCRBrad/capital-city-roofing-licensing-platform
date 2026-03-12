@@ -106,7 +106,7 @@ export const Header: React.FC = () => {
                         to="/apply"
                         className="bg-[hsl(38,75%,50%)] hover:bg-[hsl(45,90%,60%)] text-navy-950 px-6 py-2.5 rounded-md font-bold transition-all card-hover"
                     >
-                        Apply for Audit
+                        Apply to Become a Partner
                     </Link>
                 </div>
 
@@ -165,7 +165,7 @@ export const Header: React.FC = () => {
                             to="/apply"
                             className="text-center bg-[hsl(38,75%,50%)] text-navy-950 py-3 rounded-md font-bold shadow-glow-gold"
                         >
-                            Apply for Audit
+                            Apply to Become a Partner
                         </Link>
                     </div>
                 </div>

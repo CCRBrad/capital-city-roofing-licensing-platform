@@ -96,7 +96,7 @@ const About: React.FC = () => {
                                 </li>
                                 <li className="flex items-start">
                                     <Target className="w-5 h-5 text-secondary mr-3 mt-1 shrink-0" />
-                                    <span className="text-navy-900 font-medium">Pioneered the AI-driven approach to roofing CRM & Estimating.</span>
+                                    <span className="text-navy-900 font-medium">Built AI-enabled CRM, estimating, and automation workflows for roofing operations.</span>
                                 </li>
                                 <li className="flex items-start">
                                     <Target className="w-5 h-5 text-secondary mr-3 mt-1 shrink-0" />
@@ -118,9 +118,9 @@ const About: React.FC = () => {
                     <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
                         {[
                             { year: '2024', title: 'The Foundation', desc: 'Capital City Roofing is founded in Alpharetta, GA with a mission to centralize the roofing back-office using AI and lean operations.' },
-                            { year: '2025', title: 'The Proof of Concept', desc: 'Scaling the flagship Atlanta market to an 8-figure run rate with massive 35%+ profit margins.' },
+                            { year: '2025', title: 'The Proof of Concept', desc: 'Growing the flagship Atlanta market with a focus on operational discipline, centralized systems, and sustainable margin improvement.' },
                             { year: '2026', title: 'The Licensing Model', desc: 'Officially launched the Licensed Operator Platform, onboarding the first cohort of operators across 6 states.' },
-                            { year: '2027', title: 'National Expansion', desc: 'Projected to hit 200+ active licensed operators nationwide, redefining the modern roofing company.' }
+                            { year: '2027', title: 'National Expansion', desc: 'Planned expansion to additional markets, growing the licensed operator network and strengthening partner enablement.' }
                         ].map((item, idx) => (
                             <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                                 <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-navy-950 bg-secondary group-hover:bg-[hsl(38,75%,50%)] text-white group-hover:text-navy-950 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-colors">

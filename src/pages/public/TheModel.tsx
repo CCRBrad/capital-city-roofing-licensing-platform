@@ -122,7 +122,7 @@ const TheModel: React.FC = () => {
                                     { feature: 'Ongoing Royalty', franchise: '8–10% (Uncapped)', ccr: '5% Capped' },
                                     { feature: 'Contract Length', franchise: '10-Year Lock-In', ccr: 'Month-to-Month' },
                                     { feature: 'Operational Autonomy', franchise: '✗ Restricted', ccr: '✓ Full Autonomy' },
-                                    { feature: 'Territory Protection', franchise: 'Varies', ccr: '✓ Guaranteed Exclusive' },
+                                    { feature: 'Territory Protection', franchise: 'Varies', ccr: '✓ Protected & Exclusive' },
                                     { feature: 'Brand & Certifications', franchise: '✓ Included', ccr: '✓ GAF Master Elite + More' },
                                     { feature: 'Technology Stack', franchise: 'Varies / Extra Cost', ccr: '✓ AI CRM Suite Included' },
                                     { feature: 'Training', franchise: '1–2 Weeks', ccr: '✓ 3-Week University + Ongoing' },

@@ -34,7 +34,7 @@ At Capital City Roofing, we realized this model punishes operators for scaling. 
 ## The Operational Handcuffs
 Franchises tell you what CRM to use, what shingles to buy, and what your trucks must look like. You aren't a business owner; you are a highly-paid general manager of someone else's company.
 
-Our Licensing Platform strips away these handcuffs. We provide the *Capital City Roofing* brand, our 8-figure operational blueprint, and the entire AI-driven tech stack. But you have full autonomy pricing, hiring, and local vendor relationships.
+Our Licensing Platform strips away these handcuffs. We provide the *Capital City Roofing* brand, our operational blueprint, and the entire AI-enabled tech stack. But you have full autonomy pricing, hiring, and local vendor relationships.
 
 ## The Alternative
 If you want to build a real asset with a scalable back-office, forget the franchise model. Build a licensed operation instead.
@@ -83,8 +83,8 @@ In our flagship Atlanta market, implementing Sierra and Meaghan resulted in a 41
     {
         id: '3',
         slug: 'building-a-35-percent-margin-roofing-company',
-        title: 'The Blueprint to 35% Profit Margins',
-        excerpt: 'Most roofing companies struggle to hit 15% net profit. Here is the operational breakdown of how we consistently hit 35%+ margins.',
+        title: 'How Centralized Operations Can Improve Roofing Margins',
+        excerpt: 'Most roofing companies struggle to hit 15% net profit. Here is the operational breakdown of how centralizing your back office is designed to improve margins.',
         content: `
 # The Margin Squeeze
 Most roofing contractors are drowning in overhead. They have a full-time office manager, a dedicated estimator, a massive warehouse lease, and a bloated marketing budget. 
@@ -92,7 +92,7 @@ Most roofing contractors are drowning in overhead. They have a full-time office 
 After accounting for materials, labor, commissions, and overhead, most owners are lucky to take home 10% to 15%.
 
 ## Lean Operations
-The secret to a 35% margin isn't charging more; it's centralizing your back office. At Capital City Roofing, our licensed operators don't hire estimators or supplement specialists. They plug into our centralized hub.
+The key to improving margins isn't charging more; it's centralizing your back office. At Capital City Roofing, our licensed operators don't hire estimators or supplement specialists. They plug into our centralized hub.
 
 Instead of paying a $70K salary to an in-house estimator, our operators simply submit the scope to the portal, and our dedicated team returns a fully-built Roofr estimate and supplement packet within 24 hours.
 

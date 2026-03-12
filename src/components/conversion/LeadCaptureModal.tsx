@@ -64,10 +64,10 @@ export const LeadCaptureModal: React.FC = () => {
                             Free Guide
                         </span>
                         <DialogTitle className="text-3xl font-black font-display tracking-tight leading-tight">
-                            Don't Miss Out on Your Territory
+                            Get the Operator Prospectus
                         </DialogTitle>
                         <DialogDescription className="text-white/80 text-base mb-6">
-                            Download our 2026 Operator Prospectus and learn how our partners are averaging 35%+ margins.
+                            Download our 2026 Operator Prospectus to learn about the CCR licensing model, what partners receive, and how the process works.
                         </DialogDescription>
 
                         <form onSubmit={handleSubmit} className="flex flex-col space-y-3 mt-6">
@@ -84,7 +84,7 @@ export const LeadCaptureModal: React.FC = () => {
                             </Button>
                         </form>
                         <p className="text-white/50 text-xs mt-4">
-                            We respect your privacy. No spam, ever.
+                            By submitting, you agree to receive the prospectus and occasional updates. No spam, ever. See our <a href="/privacy-policy" className="underline hover:text-white/70">Privacy Policy</a>.
                         </p>
                     </div>
                 </div>

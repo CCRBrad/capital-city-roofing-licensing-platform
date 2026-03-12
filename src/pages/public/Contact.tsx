@@ -82,6 +82,9 @@ const Contact: React.FC = () => {
                                 <textarea rows={4} className="w-full px-4 py-2 rounded-md border border-border focus:outline-none focus:ring-2 focus:ring-secondary"></textarea>
                             </div>
                             <button type="button" className="w-full bg-secondary text-white font-bold py-3 rounded-md hover:bg-red-700 transition-colors">Send Message</button>
+                            <p className="text-muted-foreground text-[10px] text-center mt-2 leading-relaxed">
+                                By submitting, you agree to receive follow-up communications. See our <a href="/privacy-policy" className="underline hover:text-navy-900">Privacy Policy</a>.
+                            </p>
                         </form>
                     </div>
                 </div>

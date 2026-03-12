@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
                             </span>
                         </div>
                         <p className="text-muted-foreground pr-4">
-                            We Run the Company. You Sell the Roofs. Elevate your roofing business with our proven operational infrastructure, premium brand, and AI-powered tech stack.
+                            We Run the Company. You Sell the Roofs. Capital City Roofing licenses its brand, systems, training, and operating model to qualified roofing operators.
                         </p>
                         <div className="flex space-x-4">
                             <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-secondary hover:text-white transition-colors">
@@ -138,8 +138,8 @@ export const Footer: React.FC = () => {
                         "If it isn't in the system, it didn't happen."
                     </div>
                     <div className="flex space-x-6">
-                        <Link to="/privacy" className="text-muted-foreground hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link to="/terms" className="text-muted-foreground hover:text-white transition-colors">Terms of Service</Link>
+                        <Link to="/privacy-policy" className="text-muted-foreground hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="/terms-of-service" className="text-muted-foreground hover:text-white transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>

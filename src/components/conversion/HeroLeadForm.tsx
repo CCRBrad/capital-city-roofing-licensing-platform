@@ -29,7 +29,7 @@ export const HeroLeadForm: React.FC = () => {
         await new Promise(resolve => setTimeout(resolve, 1500));
         console.log('Lead submitted:', data);
         toast.success('Application Received!', {
-            description: 'We will be in touch shortly to schedule your audit.',
+            description: 'We will review your information and follow up shortly.',
         });
         reset();
         setIsSubmitting(false);
@@ -41,8 +41,8 @@ export const HeroLeadForm: React.FC = () => {
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
 
             <div className="mb-6 relative z-10">
-                <h3 className="text-2xl font-bold font-heading text-white mb-2">Apply for a Market Audit</h3>
-                <p className="text-white/80 text-sm">Find out if Capital City Roofing is a fit for your market. No commitment required.</p>
+                <h3 className="text-2xl font-bold font-heading text-white mb-2">Start Your Application</h3>
+                <p className="text-white/80 text-sm">Find out if the CCR licensing model is a fit for your market. No obligation.</p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -102,9 +102,12 @@ export const HeroLeadForm: React.FC = () => {
                             Processing...
                         </>
                     ) : (
-                        'Get My Audit Report'
+                        'Start My Application'
                     )}
                 </Button>
+                <p className="text-white/40 text-[10px] mt-2 text-center leading-relaxed">
+                    By submitting, you agree to receive follow-up communications. See our <a href="/privacy-policy" className="underline hover:text-white/60">Privacy Policy</a>.
+                </p>
             </form>
         </div>
     );

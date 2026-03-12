@@ -7,7 +7,7 @@ const UniversityPreview: React.FC = () => {
         <>
             <SEOHead
                 title="Capital City University | Capital City Roofing"
-                description="The 14-Day Intensive Training That Builds 7-Figure Operators"
+                description="Partner onboarding training covering systems, sales, production, and market launch."
             />
 
             <section className="bg-navy-950 text-white py-24 md:py-32 relative text-center">
@@ -31,7 +31,7 @@ const UniversityPreview: React.FC = () => {
                         { day: 'Days 1-3', title: 'The Blueprint', desc: 'Understanding the backend systems: CRM setup, AI automation configuration, and understanding models.' },
                         { day: 'Days 4-7', title: 'The Sales Matrix', desc: 'Mastering our retail and insurance sales processes, and learning how to properly leverage our estimators.' },
                         { day: 'Days 8-11', title: 'Production & Fulfillment', desc: 'Navigating material ordering, crew management, QC standards, and tracking job progress.' },
-                        { day: 'Days 12-14', title: 'Market Supremacy', desc: 'Local marketing launch strategies, generating leads, and scaling recruiting to build your team.' }
+                        { day: 'Days 12-14', title: 'Market Launch & Pipeline', desc: 'Local marketing launch strategies, generating leads, and scaling recruiting to build your team.' }
                     ].map((module, idx) => (
                         <div key={idx} className="bg-muted p-8 rounded-xl border border-border">
                             <span className="text-[hsl(38,75%,50%)] font-bold tracking-widest uppercase text-sm mb-2 block">{module.day}</span>
