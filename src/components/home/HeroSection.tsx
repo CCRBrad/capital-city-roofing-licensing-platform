@@ -9,8 +9,8 @@ export const HeroSection: React.FC = () => {
     const messages = [
         "GAF Master Elite — Top 2% Nationwide",
         "Feeding the Future: 10,000+ Meals Donated",
-        "AI-Powered Lead Gen, CRM & Automation",
-        "Operators Averaging 35%+ Profit Margins"
+        "AI-Powered CRM, Estimating & Automation",
+        "Designed for Qualified Roofing Operators"
     ];
 
     const [tickerIndex, setTickerIndex] = useState(0);
@@ -51,15 +51,15 @@ export const HeroSection: React.FC = () => {
                     </p>
 
                     <p className="text-base text-white/70 max-w-lg leading-relaxed border-l-2 border-secondary pl-4">
-                        A franchise alternative for qualified operators who want proven playbooks, partner support, and scalable market infrastructure — without building everything from scratch.
+                        A franchise alternative for qualified operators who want structured playbooks, partner support, and a stronger operating foundation — without building everything from scratch.
                     </p>
 
                     <ul className="space-y-3 pt-2">
                         {[
-                            { icon: TrendingUp, text: "35%+ Avg. Profit Margins from Day One" },
-                            { icon: Zap, text: "Launch-Ready in 14 Days — Not 14 Months" },
-                            { icon: ShieldCheck, text: "Protected Market Territory & Exclusive Leads" },
-                            { icon: CheckCircle2, text: "Brand, Training, AI, CRM & Back-Office Included" },
+                            { icon: TrendingUp, text: "Designed for Higher-Margin Operations" },
+                            { icon: Zap, text: "Structured to Launch Faster Than Building Alone" },
+                            { icon: ShieldCheck, text: "Protected Market Territory & Partner Support" },
+                            { icon: CheckCircle2, text: "Brand, Training, Systems & Back-Office Included" },
                         ].map((item, index) => (
                             <li key={index} className="flex items-center space-x-3 text-lg font-bold">
                                 <item.icon className="w-6 h-6 text-success shrink-0" />

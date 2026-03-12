@@ -92,7 +92,7 @@ const About: React.FC = () => {
                             <ul className="space-y-3">
                                 <li className="flex items-start">
                                     <Target className="w-5 h-5 text-secondary mr-3 mt-1 shrink-0" />
-                                    <span className="text-navy-900 font-medium">Scaled a seven-figure roofing operation in under two years.</span>
+                                    <span className="text-navy-900 font-medium">Built an active roofing operation with a focus on operational discipline and scalable systems.</span>
                                 </li>
                                 <li className="flex items-start">
                                     <Target className="w-5 h-5 text-secondary mr-3 mt-1 shrink-0" />

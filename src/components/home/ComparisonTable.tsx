@@ -34,7 +34,7 @@ export const ComparisonTable: React.FC = () => {
                         Licensing vs. Franchising
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        Why pay for a franchise when you can license a proven operator platform without the corporate handcuffs?
+                        See how the CCR licensing structure compares to a traditional franchise model.
                     </p>
                 </div>
 

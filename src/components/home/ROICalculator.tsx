@@ -38,12 +38,12 @@ export const ROICalculator: React.FC = () => {
         <section className="py-24 bg-muted relative" id="roi-calculator">
             <div className="container-custom">
                 <div className="text-center max-w-3xl mx-auto mb-16">
-                    <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">Stop Giving Away Your Margins</span>
+                    <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">Compare the Cost Structure</span>
                     <h2 className="text-4xl md:text-5xl font-black font-display uppercase tracking-tight text-primary mb-6">
                         The True Cost of Franchising
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        Use our interactive tool below to see exactly how much a traditional franchise will cost you in royalties over time—and how much you'll save with Capital City Roofing.
+                        Use our interactive tool below to see how the fee structures compare between a traditional franchise and Capital City Roofing licensing.
                     </p>
                 </div>
 
@@ -166,7 +166,7 @@ export const ROICalculator: React.FC = () => {
                             </div>
                         </div>
                         <div className="bg-muted p-4 text-center text-xs text-muted-foreground border-t border-border">
-                            * Calculator utilizes industry average franchise fees ($100K Buy-in, 9% Royalty) vs. Capital City Roofing Licensing ($15K Buy-in, 5% Royalty). Linear revenue assumed for simplicity.
+                            * This tool compares fee structures only and does not project revenue, profit, or business outcomes. Calculator utilizes industry average franchise fees ($100K Buy-in, 9% Royalty) vs. Capital City Roofing Licensing ($15K Buy-in, 5% Royalty). Linear revenue assumed for simplicity. Actual results depend on execution, market conditions, and operator performance.
                         </div>
                     </CardContent>
                 </Card>
