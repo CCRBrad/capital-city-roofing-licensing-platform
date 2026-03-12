@@ -63,11 +63,11 @@ const Apply: React.FC = () => {
 
                 <div className="container-custom relative z-10 w-full max-w-2xl mx-auto">
                     <div className="text-center mb-10">
-                        <span className="text-[hsl(38,75%,50%)] font-bold tracking-widest uppercase text-sm mb-4 block">Confidential Application</span>
-                        <h1 className="text-4xl md:text-5xl font-black font-display uppercase tracking-tight mb-2">
-                            Apply For Your Market
+                        <span className="text-[hsl(38,75%,50%)] font-bold tracking-widest uppercase text-sm mb-4 block">Operator Application</span>
+                        <h1 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight mb-3">
+                            Apply to Become a Market Partner
                         </h1>
-                        <p className="text-white/70">This is not a generic contact form. We are selective about who carries the Capital City Roofing brand.</p>
+                        <p className="text-white/70 max-w-lg mx-auto">This application helps us evaluate operator fit, market readiness, and launch potential. Not every applicant will be accepted.</p>
                     </div>
 
                     {/* Qualification Sidebar */}
@@ -109,7 +109,7 @@ const Apply: React.FC = () => {
                                 </div>
                                 <h3 className="text-3xl font-black font-display uppercase tracking-tight text-primary mb-3">Application Submitted</h3>
                                 <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                                    We've received your information. Our licensing team reviews every application personally — this is not an automated process.
+                                    Our licensing team reviews every application personally. Qualified applicants may be invited to a discovery call and territory audit.
                                 </p>
 
                                 {/* What Happens Next */}
@@ -149,7 +149,7 @@ const Apply: React.FC = () => {
                                 {/* Step 1: Contact Info */}
                                 {step === 1 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 1: Your Information</h3>
+                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 1: Background</h3>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label>First Name <span className="text-secondary">*</span></Label>
@@ -178,7 +178,7 @@ const Apply: React.FC = () => {
                                 {/* Step 2: Operator Background */}
                                 {step === 2 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 2: Operator Background</h3>
+                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 2: Experience & Team</h3>
                                         <div className="space-y-2">
                                             <Label>Do you have roofing or construction experience? <span className="text-secondary">*</span></Label>
                                             <select name="roofingExperience" value={formData.roofingExperience} onChange={updateField} required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
@@ -216,7 +216,7 @@ const Apply: React.FC = () => {
                                 {/* Step 3: Capital & Readiness */}
                                 {step === 3 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 3: Capital & Readiness</h3>
+                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 3: Market & Readiness</h3>
                                         <div className="space-y-2">
                                             <Label>Current Annual Revenue (If currently operating)</Label>
                                             <select name="currentRevenue" value={formData.currentRevenue} onChange={updateField} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">

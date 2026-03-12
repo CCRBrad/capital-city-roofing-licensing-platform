@@ -47,8 +47,11 @@ const SuccessStories: React.FC = () => {
             <section className="py-24 bg-navy-50 text-center">
                 <div className="container-custom">
                     <h2 className="text-4xl font-black font-display text-primary uppercase mb-6">Ready to write your own success story?</h2>
-                    <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Join a network of high-performing operators scaling their businesses without the crushing weight of back-office operations.</p>
-                    <a href="/apply" className="inline-block bg-[hsl(38,75%,50%)] text-navy-950 px-8 py-3 rounded-md font-bold hover:bg-[hsl(45,90%,60%)] transition-colors">Apply Now</a>
+                    <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">Join a network of high-performing operators scaling their businesses with the Capital City Roofing brand, systems, and support.</p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <a href="/apply" className="inline-block bg-[hsl(38,75%,50%)] text-navy-950 px-8 py-3 rounded-md font-bold hover:bg-[hsl(45,90%,60%)] transition-colors">Apply to Become a Partner</a>
+                        <a href="/the-model" className="inline-block bg-navy-950 text-white px-8 py-3 rounded-md font-bold hover:bg-navy-900 transition-colors">See The Model</a>
+                    </div>
                 </div>
             </section>
         </>
