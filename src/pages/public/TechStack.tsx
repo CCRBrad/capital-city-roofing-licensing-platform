@@ -28,8 +28,11 @@ const TechStack: React.FC = () => {
                         <p className="text-lg text-muted-foreground mb-8">
                             We are currently compiling the comprehensive documentation for this section of the Capital City Roofing Licensed Operator Platform.
                         </p>
-                        <Link to="/contact" className="inline-block bg-secondary text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors">
-                            Contact Us For Details
+                        <Link to="/apply" className="inline-block bg-secondary text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors mr-3">
+                            Apply to Become a Partner
+                        </Link>
+                        <Link to="/the-model" className="inline-block bg-navy-950 text-white px-8 py-3 rounded-md font-bold hover:bg-navy-900 transition-colors">
+                            See The Model
                         </Link>
                     </div>
                 </div>

@@ -103,12 +103,44 @@ const Apply: React.FC = () => {
                         )}
 
                         {step === totalSteps + 1 ? (
-                            <div className="text-center py-12 animate-scale-in">
+                            <div className="text-center py-8 animate-scale-in">
                                 <div className="w-20 h-20 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <CheckCircle2 className="w-10 h-10 text-success" />
                                 </div>
-                                <h3 className="text-3xl font-black font-display uppercase tracking-tight text-primary mb-4">Application Submitted</h3>
-                                <p className="text-muted-foreground mb-8">We've received your information. A member of our licensing team will review your application and reach out shortly to schedule your initial compatibility audit.</p>
+                                <h3 className="text-3xl font-black font-display uppercase tracking-tight text-primary mb-3">Application Submitted</h3>
+                                <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+                                    We've received your information. Our licensing team reviews every application personally — this is not an automated process.
+                                </p>
+
+                                {/* What Happens Next */}
+                                <div className="bg-muted rounded-xl p-6 text-left max-w-md mx-auto mb-8 border border-border">
+                                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">What Happens Next</p>
+                                    <div className="space-y-5">
+                                        <div className="flex items-start">
+                                            <div className="w-8 h-8 rounded-full bg-navy-950 text-white flex items-center justify-center text-sm font-bold shrink-0 mr-3 mt-0.5">1</div>
+                                            <div>
+                                                <p className="font-bold text-navy-950">Application Review</p>
+                                                <p className="text-sm text-muted-foreground">Our team will review your application within <strong className="text-navy-950">24 hours</strong>.</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <div className="w-8 h-8 rounded-full bg-navy-950 text-white flex items-center justify-center text-sm font-bold shrink-0 mr-3 mt-0.5">2</div>
+                                            <div>
+                                                <p className="font-bold text-navy-950">Discovery Call</p>
+                                                <p className="text-sm text-muted-foreground">If your profile aligns, we'll schedule a 30-minute call to discuss your market and goals.</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <div className="w-8 h-8 rounded-full bg-[hsl(38,75%,50%)] text-navy-950 flex items-center justify-center text-sm font-bold shrink-0 mr-3 mt-0.5">3</div>
+                                            <div>
+                                                <p className="font-bold text-navy-950">Territory Audit</p>
+                                                <p className="text-sm text-muted-foreground">We'll map your market, review territory availability, and present a partnership proposal.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p className="text-xs text-muted-foreground mb-6">We are selective about who operates under the Capital City Roofing brand. Not every applicant will be accepted.</p>
                                 <button onClick={() => window.location.href = '/'} className="font-bold text-secondary hover:underline">Return to Homepage</button>
                             </div>
                         ) : (
