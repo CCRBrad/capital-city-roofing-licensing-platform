@@ -3,8 +3,8 @@ import { SEOHead } from '../../components/SEOHead';
 import { SVGCurve } from '../../components/ui/SVGCurve';
 import { Link } from 'react-router-dom';
 import {
-    CheckCircle2, ShieldCheck, Zap, Building, GraduationCap, Headset,
-    ArrowRight, XCircle, Award, BookOpen, BarChart3, Layers
+    CheckCircle2, ShieldCheck, Zap, Award, GraduationCap, Headset,
+    ArrowRight, XCircle, BarChart3, Layers
 } from 'lucide-react';
 
 const TheModel: React.FC = () => {
@@ -12,7 +12,7 @@ const TheModel: React.FC = () => {
         <>
             <SEOHead
                 title="The Licensing Model — A Better Alternative to Franchising | Capital City Roofing"
-                description="Launch or scale a roofing business with the Capital City Roofing brand, systems, training, and operating model. A franchise alternative for qualified operators."
+                description="Build a roofing business with the Capital City Roofing brand, systems, training, and operating model. A franchise alternative for qualified operators."
             />
 
             {/* ═══ Section 1: Hero ═══ */}
@@ -20,10 +20,13 @@ const TheModel: React.FC = () => {
                 <div className="container-custom relative z-10 max-w-4xl mx-auto">
                     <span className="text-[hsl(38,75%,50%)] font-bold tracking-widest uppercase text-sm mb-4 block">The CCR Licensing Model</span>
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-display uppercase tracking-tight mb-6 leading-[1.05]">
-                        Launch or Scale a Roofing Business with a <span className="text-gradient-gold">Proven Operating Model</span>
+                        Build a Roofing Business with the Capital City Roofing <span className="text-gradient-gold">Brand, Systems, Training, and Operating Model</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed">
-                        A franchise alternative for qualified operators who want proven playbooks, elite standards, and scalable infrastructure — without building everything from scratch.
+                    <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-6 leading-relaxed">
+                        A franchise alternative for qualified operators who want proven playbooks, elite standards, and real support — without building everything from scratch.
+                    </p>
+                    <p className="text-sm text-white/50 max-w-2xl mx-auto mb-10 leading-relaxed">
+                        Capital City Roofing licenses its brand, systems, training, and operating model to approved partners. Partners remain responsible for required contractor licensing, insurance, and local/state compliance in their market.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link to="/apply" className="inline-flex items-center space-x-2 bg-secondary hover:bg-red-700 text-white font-bold py-3.5 px-8 rounded-md transition-all text-sm uppercase tracking-widest shadow-lg">
@@ -40,18 +43,30 @@ const TheModel: React.FC = () => {
 
             {/* ═══ Section 2: What This Actually Is ═══ */}
             <section className="py-20 bg-white">
-                <div className="container-custom max-w-5xl">
-                    <div className="text-center mb-12">
+                <div className="container-custom max-w-4xl">
+                    <div className="text-center mb-10">
                         <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">What This Is</span>
-                        <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-primary mb-4">
-                            Not a Franchise. Not a Course. Not a Lead Service.
+                        <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-primary mb-6">
+                            What the Capital City Roofing Licensing Model Actually Includes
                         </h2>
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                            Capital City Roofing is a licensed operating platform. We provide the brand, systems, training, and infrastructure. You provide the execution.
+                    </div>
+
+                    <div className="prose prose-lg max-w-none text-navy-900 space-y-5 mb-12">
+                        <p className="text-lg leading-relaxed">
+                            This is not just a logo license, a course library, or a generic business opportunity.
+                        </p>
+                        <p className="text-lg leading-relaxed">
+                            The Capital City Roofing Licensing Model is built for qualified operators who want to launch or scale a roofing business using a proven framework — instead of building every system alone.
+                        </p>
+                        <p className="text-lg leading-relaxed">
+                            Approved partners gain access to the Capital City Roofing brand, operating standards, training, SOPs, launch support, and ongoing partner enablement designed to help them build with greater speed, structure, and accountability.
+                        </p>
+                        <p className="text-lg leading-relaxed font-semibold text-navy-950">
+                            This model is designed for execution. It is not passive. It is for operators who want to build something real under a disciplined brand and operating system.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-5 max-w-4xl mx-auto">
                         {[
                             { icon: Award, label: 'Brand Licensing', desc: 'Operate under the CCR name and certifications' },
                             { icon: Zap, label: 'Operating System', desc: 'AI-powered CRM, estimating, workflows' },
@@ -71,16 +86,6 @@ const TheModel: React.FC = () => {
                             </div>
                         ))}
                     </div>
-
-                    {/* Compliance Clarifier */}
-                    <div className="bg-navy-950 text-white rounded-xl p-5 max-w-3xl mx-auto">
-                        <div className="flex items-start space-x-3">
-                            <ShieldCheck className="w-5 h-5 text-[hsl(38,75%,50%)] mt-0.5 shrink-0" />
-                            <p className="text-sm text-white/80 leading-relaxed">
-                                <strong className="text-white">Important:</strong> CCR licenses its brand, systems, training, and operating model. Partners are independent business owners responsible for required contractor licensing, insurance, and local/state compliance in their market.
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </section>
 
@@ -90,11 +95,16 @@ const TheModel: React.FC = () => {
                     <div className="text-center mb-12">
                         <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">Side-by-Side</span>
                         <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-primary mb-4">
-                            Franchise vs. CCR Licensing
+                            A Roofing Franchise Alternative Built for Operators
                         </h2>
-                        <p className="text-muted-foreground max-w-2xl mx-auto">
-                            Traditional franchises take your money, your freedom, and your exit. We deliver the same infrastructure with none of the handcuffs.
-                        </p>
+                        <div className="max-w-2xl mx-auto space-y-3">
+                            <p className="text-muted-foreground">
+                                Traditional franchise models often trade structure for rigidity. Independent operators often keep flexibility but lose time, consistency, and leverage.
+                            </p>
+                            <p className="text-muted-foreground">
+                                The Capital City Roofing Licensing Model is built to give qualified partners the advantage of brand, systems, training, and support — while preserving more operational flexibility than a traditional franchise structure.
+                            </p>
+                        </div>
                     </div>
 
                     <div className="overflow-x-auto">
@@ -136,29 +146,23 @@ const TheModel: React.FC = () => {
             {/* ═══ Section 4: Who This Is For / Not For ═══ */}
             <section className="py-20 bg-white">
                 <div className="container-custom max-w-5xl">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-primary mb-4">
-                            Is This Right for You?
-                        </h2>
-                        <p className="text-muted-foreground max-w-2xl mx-auto">
-                            We are selective about who operates under the Capital City Roofing brand. This is by design.
-                        </p>
-                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        {/* For */}
                         <div className="bg-success/5 border border-success/20 rounded-xl p-8">
-                            <h3 className="text-xl font-black font-display text-primary uppercase tracking-tight mb-6 flex items-center">
-                                <CheckCircle2 className="w-6 h-6 text-success mr-2" /> Good Fit
+                            <h3 className="text-xl font-black font-display text-primary uppercase tracking-tight mb-3 flex items-center">
+                                <CheckCircle2 className="w-6 h-6 text-success mr-2" /> Who This Model Is For
                             </h3>
+                            <p className="text-sm text-muted-foreground mb-6">
+                                The best partners are not looking for a shortcut. They are looking for a proven structure they can execute.
+                            </p>
                             <ul className="space-y-3">
                                 {[
-                                    'Roofing, construction, or home services background',
-                                    'Strong sales or leadership experience',
-                                    'Business ownership or entrepreneurial drive',
-                                    'Values systems, SOPs, and accountability',
-                                    'Coachable and willing to follow a proven playbook',
-                                    'Ready to recruit, build, and lead a team',
-                                    '$45K–$65K in capital to launch properly',
-                                    'Wants to build a business they can sell',
+                                    'Roofing professionals who want to scale with stronger systems and brand positioning',
+                                    'Sales-driven operators who can lead from the front and drive revenue',
+                                    'Home services professionals who understand execution, accountability, and team building',
+                                    'Entrepreneurs who want a serious operating model instead of starting from scratch',
+                                    'Leaders who value standards, process, training, and long-term growth',
+                                    'Operators who are prepared to handle compliance, recruiting, customer experience, and performance',
                                 ].map((item, idx) => (
                                     <li key={idx} className="flex items-start">
                                         <CheckCircle2 className="w-4 h-4 text-success mr-2.5 mt-1 shrink-0" />
@@ -167,20 +171,23 @@ const TheModel: React.FC = () => {
                                 ))}
                             </ul>
                         </div>
+
+                        {/* Not For */}
                         <div className="bg-destructive/5 border border-destructive/20 rounded-xl p-8">
-                            <h3 className="text-xl font-black font-display text-primary uppercase tracking-tight mb-6 flex items-center">
-                                <XCircle className="w-6 h-6 text-destructive mr-2" /> Not a Fit
+                            <h3 className="text-xl font-black font-display text-primary uppercase tracking-tight mb-3 flex items-center">
+                                <XCircle className="w-6 h-6 text-destructive mr-2" /> Who This Model Is Not For
                             </h3>
+                            <p className="text-sm text-muted-foreground mb-6">
+                                Not every applicant will be accepted. This platform is designed for serious operators.
+                            </p>
                             <ul className="space-y-3">
                                 {[
-                                    'Expecting passive income with no daily effort',
-                                    'Unwilling to follow established systems and standards',
-                                    'Looking for a low-effort side hustle',
-                                    'Not prepared to handle execution and compliance',
-                                    'Expecting overnight success without discipline',
-                                    'No sales, leadership, or business background',
-                                    'Not willing to invest in your market',
-                                    'Looking for a traditional franchise experience',
+                                    'People looking for passive income without active leadership',
+                                    'Anyone seeking a low-effort side business',
+                                    'Operators unwilling to follow brand standards and operating discipline',
+                                    'Applicants who are not prepared to manage licensing, insurance, and market compliance requirements',
+                                    'People looking for a quick flip rather than a real market-building opportunity',
+                                    'Anyone who wants freedom without accountability',
                                 ].map((item, idx) => (
                                     <li key={idx} className="flex items-start">
                                         <XCircle className="w-4 h-4 text-destructive mr-2.5 mt-1 shrink-0" />
@@ -199,7 +206,7 @@ const TheModel: React.FC = () => {
                     <div className="text-center mb-12">
                         <span className="text-secondary font-bold tracking-widest uppercase text-sm mb-2 block">The Complete Package</span>
                         <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-primary mb-4">
-                            What Partners Receive
+                            What Approved Partners Get
                         </h2>
                     </div>
 
@@ -207,56 +214,29 @@ const TheModel: React.FC = () => {
                         {[
                             {
                                 icon: Award, title: 'Brand',
-                                items: [
-                                    'Capital City Roofing identity and market positioning',
-                                    'GAF Master Elite and CertainTeed SELECT certifications',
-                                    'Premium credibility framework from day one',
-                                    'NRCA membership and industry affiliations',
-                                ]
+                                desc: 'Operate under a premium roofing brand built around innovation, integrity, and execution. Partners benefit from stronger positioning, greater market trust, and a more credible foundation for growth.'
                             },
                             {
                                 icon: Zap, title: 'Systems',
-                                items: [
-                                    'Standard operating procedures for every department',
-                                    'AI-powered workflows and automations',
-                                    'Launch process and operational cadence',
-                                    'Partner dashboard and performance tracking',
-                                ]
+                                desc: 'Access structured workflows, operating standards, SOPs, and launch tools designed to reduce guesswork and increase consistency across sales, operations, and growth.'
                             },
                             {
                                 icon: GraduationCap, title: 'Training',
-                                items: [
-                                    '3-week Capital City University program',
-                                    'Sales, production, supplements, and leadership modules',
-                                    'Role-based team enablement',
-                                    'Certifications and ongoing learning',
-                                ]
+                                desc: 'Use Capital City Roofing University, role-based education, certifications, and implementation guidance to accelerate partner readiness and team development.'
                             },
                             {
                                 icon: Headset, title: 'Support',
-                                items: [
-                                    'Application review and discovery process',
-                                    'Territory audit and market mapping',
-                                    'Centralized estimating, supplements, and production',
-                                    'Ongoing partner guidance and escalation support',
-                                ]
+                                desc: 'Approved partners receive guided onboarding, application review, discovery, territory evaluation, and ongoing enablement designed to help them launch with clarity and operate with discipline.'
                             },
                         ].map((bucket, idx) => (
                             <div key={idx} className="bg-white rounded-xl border border-border p-8 shadow-sm">
-                                <div className="flex items-center space-x-3 mb-5">
+                                <div className="flex items-center space-x-3 mb-4">
                                     <div className="w-11 h-11 rounded-lg bg-navy-950 flex items-center justify-center shrink-0">
                                         <bucket.icon className="w-5 h-5 text-[hsl(38,75%,50%)]" />
                                     </div>
                                     <h3 className="text-xl font-black font-display text-primary uppercase tracking-tight">{bucket.title}</h3>
                                 </div>
-                                <ul className="space-y-2.5">
-                                    {bucket.items.map((item, j) => (
-                                        <li key={j} className="flex items-start">
-                                            <CheckCircle2 className="w-4 h-4 text-success mr-2.5 mt-0.5 shrink-0" />
-                                            <span className="text-sm text-navy-900">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <p className="text-sm text-muted-foreground leading-relaxed">{bucket.desc}</p>
                             </div>
                         ))}
                     </div>
@@ -266,13 +246,22 @@ const TheModel: React.FC = () => {
             {/* ═══ Section 6: Economics ═══ */}
             <section className="py-20 bg-navy-950 text-white">
                 <div className="container-custom max-w-4xl">
-                    <div className="text-center mb-12">
+                    <div className="text-center mb-10">
                         <span className="text-[hsl(38,75%,50%)] font-bold tracking-widest uppercase text-sm mb-2 block">Transparent Economics</span>
-                        <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight mb-4">
-                            You Are Building a Business
+                        <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight mb-6">
+                            Built for Real Operators, Not Passive Expectations
                         </h2>
-                        <p className="text-white/70 max-w-2xl mx-auto">
-                            This is not passive income. Your results depend on execution, team quality, market effort, close rate, production discipline, and compliance readiness.
+                    </div>
+
+                    <div className="max-w-3xl mx-auto space-y-5 mb-12">
+                        <p className="text-white/80 text-lg leading-relaxed">
+                            This model is designed for people who want to build and operate a serious roofing business.
+                        </p>
+                        <p className="text-white/70 leading-relaxed">
+                            Partner performance depends on execution, market conditions, leadership, team quality, close rate, production discipline, customer experience, and compliance readiness. This is not passive income, and it is not a guaranteed outcome.
+                        </p>
+                        <p className="text-white/70 leading-relaxed">
+                            What this model can do is help qualified operators move faster with stronger structure, better systems, clearer standards, and a more credible operating foundation than they would typically have on their own.
                         </p>
                     </div>
 
@@ -289,14 +278,30 @@ const TheModel: React.FC = () => {
                             </div>
                         ))}
                     </div>
-
-                    <p className="text-white/40 text-xs text-center max-w-2xl mx-auto leading-relaxed">
-                        We recommend operators have $30K–$50K in working capital beyond the buy-in to cover LLC formation, initial marketing, and personal runway during ramp-up. Economics depend on market, execution, team, and production discipline.
-                    </p>
                 </div>
             </section>
 
-            {/* ═══ Section 7: What Happens Next ═══ */}
+            {/* ═══ Section 7: Compliance Disclaimer ═══ */}
+            <section className="py-12 bg-white border-b border-border">
+                <div className="container-custom max-w-3xl">
+                    <div className="bg-muted border border-border rounded-xl p-6">
+                        <div className="flex items-start space-x-3">
+                            <ShieldCheck className="w-5 h-5 text-[hsl(38,75%,50%)] mt-0.5 shrink-0" />
+                            <div>
+                                <p className="font-bold text-navy-950 text-sm mb-2">Important Compliance Note</p>
+                                <p className="text-sm text-muted-foreground leading-relaxed mb-2">
+                                    Capital City Roofing does not issue contractor licenses.
+                                </p>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                    Capital City Roofing licenses its brand, systems, training, and operating model to approved partners. Each partner remains responsible for obtaining and maintaining all required contractor licenses, insurance coverage, registrations, and local or state compliance requirements applicable to their market.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══ Section 8: What Happens Next ═══ */}
             <section id="what-happens-next" className="py-20 bg-white scroll-mt-20">
                 <div className="container-custom max-w-4xl">
                     <div className="text-center mb-12">
@@ -305,35 +310,33 @@ const TheModel: React.FC = () => {
                             What Happens Next
                         </h2>
                         <p className="text-muted-foreground max-w-xl mx-auto">
-                            From application to launch, here's exactly how the process works.
+                            Our process is designed to evaluate fit, readiness, and market opportunity. Not every applicant will move forward.
                         </p>
                     </div>
 
                     <div className="max-w-2xl mx-auto">
                         {[
-                            { step: '1', title: 'Apply', desc: 'Submit your application. We review every submission personally — this is not automated.', time: '5 minutes' },
-                            { step: '2', title: 'Application Review', desc: 'Our licensing team evaluates your background, market, and operator fit.', time: 'Within 24 hours' },
-                            { step: '3', title: 'Discovery Call', desc: 'If your profile aligns, we schedule a 30-minute call to discuss your goals and answer questions.', time: '30 minutes' },
-                            { step: '4', title: 'Territory Audit', desc: 'We map your market, review territory availability, and present a partnership proposal.', time: 'Collaborative' },
-                            { step: '5', title: 'Partner Decision', desc: 'You review the proposal. If it is a fit for both sides, we begin onboarding and launch prep.', time: 'Your timeline' },
+                            { step: '1', title: 'Application Review', desc: 'We review your background, experience, readiness, and market potential. Qualified submissions are typically reviewed within 24 hours.', time: 'Within 24 hours' },
+                            { step: '2', title: 'Discovery Call', desc: 'If there appears to be mutual fit, we schedule a discovery conversation to discuss your background, goals, market, and alignment with the CCR model.', time: '30 minutes' },
+                            { step: '3', title: 'Territory Audit', desc: 'Qualified candidates may move into territory and opportunity review, where we evaluate market viability, partner fit, and next-step potential.', time: 'Collaborative' },
                         ].map((item, idx) => (
                             <div key={idx} className="flex items-start mb-8 last:mb-0">
                                 <div className="flex flex-col items-center mr-5">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${
                                         idx === 0 ? 'bg-secondary text-white' :
-                                        idx === 4 ? 'bg-[hsl(38,75%,50%)] text-navy-950' :
+                                        idx === 2 ? 'bg-[hsl(38,75%,50%)] text-navy-950' :
                                         'bg-navy-950 text-white'
                                     }`}>
                                         {item.step}
                                     </div>
-                                    {idx < 4 && <div className="w-0.5 h-8 bg-border mt-2"></div>}
+                                    {idx < 2 && <div className="w-0.5 h-8 bg-border mt-2"></div>}
                                 </div>
                                 <div className="pt-1.5">
                                     <div className="flex items-center space-x-3 mb-1">
                                         <p className="font-black text-navy-950 text-lg">{item.title}</p>
                                         <span className="text-xs font-bold text-muted-foreground bg-muted px-2 py-0.5 rounded-full">{item.time}</span>
                                     </div>
-                                    <p className="text-sm text-muted-foreground">{item.desc}</p>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                                 </div>
                             </div>
                         ))}
@@ -341,7 +344,7 @@ const TheModel: React.FC = () => {
                 </div>
             </section>
 
-            {/* ═══ Section 8: Final CTA ═══ */}
+            {/* ═══ Section 9: Final CTA ═══ */}
             <section className="py-20 bg-navy-950 text-white text-center relative z-10">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(200,16,46,0.15)_0%,transparent_70%)] -z-10"></div>
                 <div className="container-custom max-w-3xl">
@@ -349,35 +352,27 @@ const TheModel: React.FC = () => {
                         If You Are Serious About Building Under a Proven Roofing Model,{' '}
                         <span className="text-secondary">Start the Application.</span>
                     </h2>
-                    <p className="text-white/70 mb-8 max-w-xl mx-auto">
-                        Limited territories. Selective acceptance. 24-hour application review.
+                    <p className="text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
+                        This platform is built for qualified operators who want structure, standards, and real growth potential. If that sounds like you, take the next step.
                     </p>
-
-                    {/* Proof strip */}
-                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-10 text-xs text-white/50 font-bold uppercase tracking-widest">
-                        <span className="flex items-center"><Award className="w-3.5 h-3.5 mr-1.5 text-[hsl(38,75%,50%)]" />GAF Master Elite</span>
-                        <span className="flex items-center"><ShieldCheck className="w-3.5 h-3.5 mr-1.5 text-success" />CertainTeed SELECT</span>
-                        <span className="flex items-center"><Building className="w-3.5 h-3.5 mr-1.5 text-blue-400" />NRCA Member</span>
-                        <span className="flex items-center"><BookOpen className="w-3.5 h-3.5 mr-1.5 text-secondary" />3-Week University</span>
-                    </div>
 
                     <div className="flex flex-wrap justify-center gap-4">
                         <Link to="/apply" className="inline-flex items-center space-x-2 bg-[hsl(38,75%,50%)] hover:bg-[hsl(45,90%,60%)] text-navy-950 font-bold py-4 px-10 rounded-md transition-all text-sm uppercase tracking-widest shadow-glow-gold">
                             <span>Apply to Become a Partner</span>
                             <ArrowRight className="w-4 h-4" />
                         </Link>
-                        <Link to="/apply" className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-md transition-all text-sm uppercase tracking-widest border border-white/20">
-                            <span>See the Partner Process</span>
-                        </Link>
+                        <a href="#what-happens-next" className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-md transition-all text-sm uppercase tracking-widest border border-white/20">
+                            <span>See What Happens Next</span>
+                        </a>
                     </div>
                 </div>
             </section>
 
-            {/* Licensing Disclaimer */}
+            {/* Footer Disclaimer */}
             <div className="bg-muted py-4">
                 <div className="container-custom">
                     <p className="text-[11px] text-muted-foreground/60 leading-relaxed max-w-4xl mx-auto text-center">
-                        Capital City Roofing licenses its brand, operating systems, training curriculum, and technology platform to qualified market partners. Licensed operators are independent business owners responsible for meeting all applicable state and local contractor licensing, registration, insurance, and compliance requirements in their respective markets.
+                        Capital City Roofing licenses its brand, systems, training, and operating model to approved partners. Partners remain responsible for contractor licensing, insurance, and applicable state and local compliance requirements in their market.
                     </p>
                 </div>
             </div>

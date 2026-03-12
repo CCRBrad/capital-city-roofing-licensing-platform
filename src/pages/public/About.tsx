@@ -2,6 +2,7 @@ import React from 'react';
 import { SEOHead } from '../../components/SEOHead';
 import { ShieldCheck, Target, Users, Zap, Award } from 'lucide-react';
 import { SVGCurve } from '../../components/ui/SVGCurve';
+import { Link } from 'react-router-dom';
 
 const About: React.FC = () => {
     return (
@@ -134,6 +135,26 @@ const About: React.FC = () => {
                                 </div>
                             </div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA */}
+            <section className="py-20 bg-white text-center">
+                <div className="container-custom max-w-3xl">
+                    <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight text-primary mb-4">
+                        Ready to See Whether This Model Is the Right Fit?
+                    </h2>
+                    <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+                        Review the model or start your application. Every public page is designed to lead qualified operators toward the next clear step.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <Link to="/the-model" className="inline-block bg-navy-950 text-white px-8 py-3 rounded-md font-bold hover:bg-navy-900 transition-colors">
+                            See The Model
+                        </Link>
+                        <Link to="/apply" className="inline-block bg-secondary text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors">
+                            Apply to Become a Partner
+                        </Link>
                     </div>
                 </div>
             </section>

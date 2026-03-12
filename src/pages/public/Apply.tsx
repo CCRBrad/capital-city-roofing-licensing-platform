@@ -3,8 +3,9 @@ import { SEOHead } from '../../components/SEOHead';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
 import { Label } from '../../components/ui/label';
+import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
-import { ArrowRight, ArrowLeft, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle2, ShieldCheck, AlertTriangle } from 'lucide-react';
 
 const Apply: React.FC = () => {
     const [step, setStep] = useState(1);
@@ -44,8 +45,8 @@ const Apply: React.FC = () => {
         setIsSubmitting(true);
         setTimeout(() => {
             setIsSubmitting(false);
-            toast.success('Application Received! 🎉', {
-                description: 'Our team will review your application and contact you within 24 hours to schedule your audit call.',
+            toast.success('Application Received', {
+                description: 'Our team will review your submission. Qualified applicants may be invited to a discovery call.',
             });
             setStep(totalSteps + 1);
         }, 1500);
@@ -54,36 +55,47 @@ const Apply: React.FC = () => {
     return (
         <>
             <SEOHead
-                title="Apply For A Territory Audit | Capital City Roofing"
-                description="Submit your application to become a Licensed Market Partner. We are currently accepting applications for qualified operators."
+                title="Apply to Become a Market Partner | Capital City Roofing"
+                description="This application helps us evaluate operator fit, market readiness, and launch potential. Not every applicant will be accepted."
             />
 
-            <section className="bg-navy-950 text-white py-24 min-h-[calc(100vh-80px)] relative flex items-center">
+            <section className="bg-navy-950 text-white py-20 min-h-[calc(100vh-80px)] relative flex items-center">
                 <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541888085698-c9233f208c2a?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
 
                 <div className="container-custom relative z-10 w-full max-w-2xl mx-auto">
-                    <div className="text-center mb-10">
+
+                    {/* Intro Header */}
+                    <div className="text-center mb-8">
                         <span className="text-[hsl(38,75%,50%)] font-bold tracking-widest uppercase text-sm mb-4 block">Operator Application</span>
                         <h1 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight mb-3">
-                            Apply to Become a Market Partner
+                            Apply to Become a Capital City Roofing Market Partner
                         </h1>
-                        <p className="text-white/70 max-w-lg mx-auto">This application helps us evaluate operator fit, market readiness, and launch potential. Not every applicant will be accepted.</p>
+                        <p className="text-white/70 max-w-lg mx-auto mb-4">
+                            This application helps us evaluate operator fit, market readiness, and launch potential. Not every applicant will be accepted.
+                        </p>
                     </div>
 
-                    {/* Qualification Sidebar */}
-                    <div className="flex items-center justify-center space-x-6 mb-8 text-sm text-white/50">
+                    {/* Trust Strip */}
+                    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6 text-sm text-white/50">
                         <div className="flex items-center space-x-1.5">
                             <ShieldCheck className="w-4 h-4 text-success" />
-                            <span>Confidential</span>
+                            <span>Confidential Application</span>
                         </div>
                         <div className="flex items-center space-x-1.5">
                             <CheckCircle2 className="w-4 h-4 text-[hsl(38,75%,50%)]" />
-                            <span>24hr Response</span>
+                            <span>24-Hour Review Goal</span>
                         </div>
                         <div className="flex items-center space-x-1.5">
                             <CheckCircle2 className="w-4 h-4 text-[hsl(38,75%,50%)]" />
-                            <span>No Obligation</span>
+                            <span>No Obligation to Apply</span>
                         </div>
+                    </div>
+
+                    {/* Intro Paragraph */}
+                    <div className="text-center mb-8">
+                        <p className="text-sm text-white/60 max-w-lg mx-auto leading-relaxed">
+                            We are looking for serious operators who want to build with structure, accountability, and long-term vision. This application is designed to help us understand your experience, sales background, team readiness, market opportunity, and launch timeline. The goal is not just to collect interest. The goal is to identify strong-fit partners.
+                        </p>
                     </div>
 
                     <div className="bg-white p-8 md:p-10 rounded-2xl shadow-navy-2xl border border-white/10 relative text-navy-900">
@@ -102,54 +114,62 @@ const Apply: React.FC = () => {
                             </div>
                         )}
 
+                        {/* ═══ Success State ═══ */}
                         {step === totalSteps + 1 ? (
                             <div className="text-center py-8 animate-scale-in">
                                 <div className="w-20 h-20 bg-success/20 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <CheckCircle2 className="w-10 h-10 text-success" />
                                 </div>
-                                <h3 className="text-3xl font-black font-display uppercase tracking-tight text-primary mb-3">Application Submitted</h3>
-                                <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                                    Our licensing team reviews every application personally. Qualified applicants may be invited to a discovery call and territory audit.
+                                <h3 className="text-3xl font-black font-display uppercase tracking-tight text-primary mb-3">Application Received</h3>
+                                <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
+                                    Thank you for applying. Our team will review your submission and determine whether there is potential fit for the next stage of the process. Qualified applicants may be invited to a discovery call and territory audit. Not every applicant will be accepted.
                                 </p>
 
-                                {/* What Happens Next */}
+                                {/* What Happens After You Apply */}
                                 <div className="bg-muted rounded-xl p-6 text-left max-w-md mx-auto mb-8 border border-border">
-                                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">What Happens Next</p>
+                                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-1">What Happens After You Apply</p>
+                                    <p className="text-xs text-muted-foreground mb-4">Qualified applicants move through a structured review process designed to evaluate fit and market opportunity.</p>
                                     <div className="space-y-5">
                                         <div className="flex items-start">
                                             <div className="w-8 h-8 rounded-full bg-navy-950 text-white flex items-center justify-center text-sm font-bold shrink-0 mr-3 mt-0.5">1</div>
                                             <div>
                                                 <p className="font-bold text-navy-950">Application Review</p>
-                                                <p className="text-sm text-muted-foreground">Our team will review your application within <strong className="text-navy-950">24 hours</strong>.</p>
+                                                <p className="text-sm text-muted-foreground">Your submission is reviewed by our team, typically within <strong className="text-navy-950">24 hours</strong>.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start">
                                             <div className="w-8 h-8 rounded-full bg-navy-950 text-white flex items-center justify-center text-sm font-bold shrink-0 mr-3 mt-0.5">2</div>
                                             <div>
                                                 <p className="font-bold text-navy-950">Discovery Call</p>
-                                                <p className="text-sm text-muted-foreground">If your profile aligns, we'll schedule a 30-minute call to discuss your market and goals.</p>
+                                                <p className="text-sm text-muted-foreground">If there is potential fit, we schedule a conversation to learn more about your goals, market, and operating background.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start">
                                             <div className="w-8 h-8 rounded-full bg-[hsl(38,75%,50%)] text-navy-950 flex items-center justify-center text-sm font-bold shrink-0 mr-3 mt-0.5">3</div>
                                             <div>
                                                 <p className="font-bold text-navy-950">Territory Audit</p>
-                                                <p className="text-sm text-muted-foreground">We'll map your market, review territory availability, and present a partnership proposal.</p>
+                                                <p className="text-sm text-muted-foreground">Qualified applicants may move into territory review and next-step evaluation.</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <p className="text-xs text-muted-foreground mb-6">We are selective about who operates under the Capital City Roofing brand. Not every applicant will be accepted.</p>
-                                <button onClick={() => window.location.href = '/'} className="font-bold text-secondary hover:underline">Return to Homepage</button>
+                                <div className="flex flex-wrap justify-center gap-4">
+                                    <Link to="/the-model" className="font-bold text-secondary hover:underline text-sm">See The Model</Link>
+                                    <span className="text-muted-foreground">·</span>
+                                    <button onClick={() => window.location.href = '/'} className="font-bold text-muted-foreground hover:text-navy-950 text-sm">Return Home</button>
+                                </div>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
 
-                                {/* Step 1: Contact Info */}
+                                {/* ═══ Step 1: Background ═══ */}
                                 {step === 1 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 1: Background</h3>
+                                        <div>
+                                            <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-2">Step 1: Background</h3>
+                                            <p className="text-xs text-muted-foreground mb-4">Tell us about yourself and your target market.</p>
+                                        </div>
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">
                                                 <Label>First Name <span className="text-secondary">*</span></Label>
@@ -175,10 +195,13 @@ const Apply: React.FC = () => {
                                     </div>
                                 )}
 
-                                {/* Step 2: Operator Background */}
+                                {/* ═══ Step 2: Experience & Team ═══ */}
                                 {step === 2 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 2: Experience & Team</h3>
+                                        <div>
+                                            <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-2">Step 2: Experience & Team</h3>
+                                            <p className="text-xs text-muted-foreground mb-4">Help us understand your operating background and team readiness.</p>
+                                        </div>
                                         <div className="space-y-2">
                                             <Label>Do you have roofing or construction experience? <span className="text-secondary">*</span></Label>
                                             <select name="roofingExperience" value={formData.roofingExperience} onChange={updateField} required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
@@ -213,10 +236,13 @@ const Apply: React.FC = () => {
                                     </div>
                                 )}
 
-                                {/* Step 3: Capital & Readiness */}
+                                {/* ═══ Step 3: Market & Readiness ═══ */}
                                 {step === 3 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 3: Market & Readiness</h3>
+                                        <div>
+                                            <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-2">Step 3: Market & Readiness</h3>
+                                            <p className="text-xs text-muted-foreground mb-4">Tell us about your financial readiness and compliance awareness.</p>
+                                        </div>
                                         <div className="space-y-2">
                                             <Label>Current Annual Revenue (If currently operating)</Label>
                                             <select name="currentRevenue" value={formData.currentRevenue} onChange={updateField} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
@@ -239,7 +265,7 @@ const Apply: React.FC = () => {
                                             </select>
                                         </div>
                                         <div className="space-y-2">
-                                            <Label>Are you ready to handle state/local contractor compliance? <span className="text-secondary">*</span></Label>
+                                            <Label>Are you prepared to handle state/local contractor compliance? <span className="text-secondary">*</span></Label>
                                             <p className="text-xs text-muted-foreground mb-1">Partners are responsible for meeting required contractor licensing, registration, and insurance in their state.</p>
                                             <select name="complianceReady" value={formData.complianceReady} onChange={updateField} required className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
                                                 <option value="">Select...</option>
@@ -261,13 +287,15 @@ const Apply: React.FC = () => {
                                     </div>
                                 )}
 
-                                {/* Step 4: Vision & Goals */}
+                                {/* ═══ Step 4: Vision & Goals ═══ */}
                                 {step === 4 && (
                                     <div className="animate-fade-in space-y-4">
-                                        <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-4">Step 4: Vision & Goals</h3>
+                                        <div>
+                                            <h3 className="text-xl font-bold font-heading text-primary border-b border-border pb-2 mb-2">Step 4: Vision & Goals</h3>
+                                            <p className="text-xs text-muted-foreground mb-4">Complete the application as accurately as possible. The stronger your answers, the better we can evaluate fit and determine the right next step.</p>
+                                        </div>
                                         <div className="space-y-2">
                                             <Label>Why are you interested in partnering with Capital City Roofing? <span className="text-secondary">*</span></Label>
-                                            <p className="text-xs text-muted-foreground mb-1">We are highly selective. Tell us why you're a fit and what you're building toward.</p>
                                             <textarea
                                                 name="goals"
                                                 rows={5}
@@ -277,6 +305,19 @@ const Apply: React.FC = () => {
                                                 className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                                 placeholder="Share your background, why the CCR model appeals to you, and your revenue goals for Year 1..."
                                             />
+                                        </div>
+
+                                        {/* Selectivity Callout */}
+                                        <div className="bg-[hsl(38,75%,50%)]/10 border border-[hsl(38,75%,50%)]/30 rounded-lg p-4 mt-4">
+                                            <div className="flex items-start space-x-3">
+                                                <AlertTriangle className="w-4 h-4 text-[hsl(38,75%,50%)] mt-0.5 shrink-0" />
+                                                <div>
+                                                    <p className="font-bold text-navy-950 text-sm mb-1">This Is a Selective Process</p>
+                                                    <p className="text-xs text-muted-foreground leading-relaxed">
+                                                        Applying does not guarantee acceptance. We review each submission based on experience, execution readiness, market fit, and alignment with the Capital City Roofing operating model.
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -304,7 +345,7 @@ const Apply: React.FC = () => {
 
                     {/* Licensing Compliance Note */}
                     <p className="text-center text-white/30 text-xs mt-6 max-w-lg mx-auto leading-relaxed">
-                        By applying, you acknowledge that Capital City Roofing licenses its brand, operating systems, and training platform. Licensed operators are independent business owners responsible for all applicable state and local contractor licensing, insurance, and compliance requirements in their market.
+                        Capital City Roofing licenses its brand, systems, training, and operating model to approved partners. Partners remain responsible for contractor licensing, insurance, and applicable state and local compliance requirements in their market.
                     </p>
                 </div>
             </section>

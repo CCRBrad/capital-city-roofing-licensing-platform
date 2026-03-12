@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { SEOHead } from '../../components/SEOHead';
 import { SVGCurve } from '../../components/ui/SVGCurve';
 import { MapPin, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { Button } from '../../components/ui/button';
 
 export const StateLicensing: React.FC = () => {
     const { stateSlug } = useParams<{ stateSlug: string }>();
@@ -33,10 +32,8 @@ export const StateLicensing: React.FC = () => {
                     <p className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto mb-10">
                         Stop giving away 10% of your revenue to a franchise. License our 8-figure operational blueprint and scale in {stateName}.
                     </p>
-                    <Link to="/apply">
-                        <Button className="h-14 px-8 text-lg font-bold bg-[hsl(38,75%,50%)] hover:bg-[hsl(45,90%,60%)] text-navy-950 shadow-glow-gold rounded-full">
-                            Check {stateName} Territory Availability
-                        </Button>
+                    <Link to="/apply" className="inline-block h-14 px-8 text-lg font-bold bg-[hsl(38,75%,50%)] hover:bg-[hsl(45,90%,60%)] text-navy-950 shadow-glow-gold rounded-full leading-[3.5rem] transition-colors">
+                        Check {stateName} Territory Availability
                     </Link>
                 </div>
                 <SVGCurve fill="#ffffff" />
@@ -62,15 +59,23 @@ export const StateLicensing: React.FC = () => {
                 </div>
             </section>
 
-            <section className="py-32 bg-navy-950 text-white text-center relative z-10">
+            <section className="py-20 bg-navy-950 text-white text-center relative z-10">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(200,16,46,0.15)_0%,transparent_70%)] -z-10"></div>
-                <div className="container-custom">
-                    <h2 className="text-4xl font-black font-display uppercase tracking-tight mb-8">Ready to Scale in {stateName}?</h2>
-                    <Link to="/the-model">
-                        <Button variant="outline" className="h-14 px-8 text-lg font-bold border-white/30 hover:bg-white hover:text-navy-950 rounded-full bg-transparent text-white transition-all">
-                            Explore Setup Tiers
-                        </Button>
-                    </Link>
+                <div className="container-custom max-w-3xl">
+                    <h2 className="text-3xl md:text-4xl font-black font-display uppercase tracking-tight mb-4">
+                        Ready to See Whether This Model Is the Right Fit?
+                    </h2>
+                    <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
+                        Review the model or start your application. Every public page is designed to lead qualified operators toward the next clear step.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        <Link to="/apply" className="inline-block bg-[hsl(38,75%,50%)] text-navy-950 px-8 py-3 rounded-md font-bold hover:bg-[hsl(45,90%,60%)] transition-colors">
+                            Apply to Become a Partner
+                        </Link>
+                        <Link to="/the-model" className="inline-block bg-white/10 text-white px-8 py-3 rounded-md font-bold hover:bg-white/20 transition-colors border border-white/20">
+                            See The Model
+                        </Link>
+                    </div>
                 </div>
             </section>
 
@@ -78,7 +83,7 @@ export const StateLicensing: React.FC = () => {
             <div className="bg-muted py-4">
                 <div className="container-custom">
                     <p className="text-[11px] text-muted-foreground/60 leading-relaxed max-w-4xl mx-auto text-center">
-                        Capital City Roofing licenses its brand, operating systems, training curriculum, and technology platform to qualified market partners. Licensed operators are independent business owners responsible for meeting all applicable state and local contractor licensing, registration, insurance, and compliance requirements in their respective markets. Capital City Roofing does not issue contractor licenses.
+                        Capital City Roofing licenses its brand, systems, training, and operating model to approved partners. Partners remain responsible for contractor licensing, insurance, and applicable state and local compliance requirements in their market.
                     </p>
                 </div>
             </div>

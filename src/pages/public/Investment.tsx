@@ -24,16 +24,18 @@ const Investment: React.FC = () => {
             <section className="py-24 bg-white min-h-[400px] flex items-center justify-center">
                 <div className="container-custom max-w-3xl text-center">
                     <div className="p-12 bg-muted rounded-2xl border border-border">
-                        <h2 className="text-3xl font-black font-display text-primary uppercase mb-4">Detailed Content Coming Soon</h2>
+                        <h2 className="text-3xl font-black font-display text-primary uppercase mb-4">Ready to See Whether This Model Is the Right Fit?</h2>
                         <p className="text-lg text-muted-foreground mb-8">
-                            We are currently compiling the comprehensive documentation for this section of the Capital City Roofing Licensed Operator Platform.
+                            Review the model or start your application. Every public page is designed to lead qualified operators toward the next clear step.
                         </p>
-                        <Link to="/apply" className="inline-block bg-secondary text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors mr-3">
-                            Apply to Become a Partner
-                        </Link>
-                        <Link to="/the-model" className="inline-block bg-navy-950 text-white px-8 py-3 rounded-md font-bold hover:bg-navy-900 transition-colors">
-                            See The Model
-                        </Link>
+                        <div className="flex flex-wrap justify-center gap-3">
+                            <Link to="/apply" className="inline-block bg-secondary text-white px-8 py-3 rounded-md font-bold hover:bg-red-700 transition-colors">
+                                Apply to Become a Partner
+                            </Link>
+                            <Link to="/the-model" className="inline-block bg-navy-950 text-white px-8 py-3 rounded-md font-bold hover:bg-navy-900 transition-colors">
+                                See The Model
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
