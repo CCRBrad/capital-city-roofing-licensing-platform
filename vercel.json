@@ -12,6 +12,9 @@
     }
   ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/((?!.*\\.(?:xml|txt|ico|png|jpg|jpeg|webp|svg|gif|css|js|woff|woff2|ttf|map|json)$).*)",
+      "destination": "/index.html"
+    }
   ]
 }
