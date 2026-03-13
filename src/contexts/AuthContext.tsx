@@ -12,6 +12,8 @@ export interface User {
     certifications?: string[];
     complianceStatus?: ComplianceStatus;
     universityProgress?: number;
+    title?: string;
+    initials?: string;
 }
 
 interface AuthContextType {
@@ -23,15 +25,80 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Real CCR team members
+export const teamMembers: User[] = [
+    {
+        id: '1',
+        role: 'admin',
+        name: 'Brad Strawbridge',
+        email: 'brad@capitalcityroofing.net',
+        market: 'National',
+        title: 'Visionary / CEO',
+        initials: 'BS',
+        certifications: ['GAF Master Elite', 'CertainTeed Shingle Master Premier'],
+        complianceStatus: 'green',
+        universityProgress: 100,
+    },
+    {
+        id: '2',
+        role: 'admin',
+        name: 'Edward Ouielie',
+        email: 'edward@capitalcityroofing.net',
+        market: 'National',
+        title: 'Integrator / COO',
+        initials: 'EO',
+        certifications: [],
+        complianceStatus: 'green',
+        universityProgress: 100,
+    },
+    {
+        id: '3',
+        role: 'employee',
+        name: 'Jason Light',
+        email: 'jason@capitalcityroofing.net',
+        market: 'Atlanta, GA',
+        title: 'Sales & Customer Experience',
+        initials: 'JL',
+        certifications: ['Certified Sales Rep'],
+        complianceStatus: 'green',
+        universityProgress: 100,
+    },
+    {
+        id: '4',
+        role: 'employee',
+        name: 'Tiffany Strawbridge',
+        email: 'tiffany@capitalcityroofing.net',
+        market: 'Atlanta, GA',
+        title: 'Operations',
+        initials: 'TS',
+        certifications: [],
+        complianceStatus: 'green',
+        universityProgress: 100,
+    },
+    {
+        id: '5',
+        role: 'employee',
+        name: 'Airus',
+        email: 'admin@capitalcityroofing.net',
+        market: 'National',
+        title: 'Admin & Finance',
+        initials: 'AI',
+        certifications: [],
+        complianceStatus: 'green',
+        universityProgress: 100,
+    },
+];
+
+// Legacy mock users for login demo — mapped to real people
 export const mockUsers: Record<UserRole, User> = {
     prospect: {
-        id: '1',
+        id: '100',
         role: 'prospect',
         name: 'John Prospect',
         email: 'john@example.com',
     },
     licensee: {
-        id: '2',
+        id: '101',
         role: 'licensee',
         name: 'Marcus Johnson',
         email: 'marcus@ccratlanta.com',
@@ -43,20 +110,24 @@ export const mockUsers: Record<UserRole, User> = {
     employee: {
         id: '3',
         role: 'employee',
-        name: 'Sarah Williams',
-        email: 'sarah@ccratlanta.com',
+        name: 'Jason Light',
+        email: 'jason@capitalcityroofing.net',
         market: 'Atlanta, GA',
+        title: 'Sales & Customer Experience',
+        initials: 'JL',
         certifications: ['Certified Sales Rep'],
-        complianceStatus: 'yellow',
+        complianceStatus: 'green',
         universityProgress: 100,
     },
     admin: {
-        id: '4',
+        id: '1',
         role: 'admin',
         name: 'Brad Strawbridge',
         email: 'brad@capitalcityroofing.net',
         market: 'National',
-        certifications: ['GAF Certified Plus', 'CertainTeed SELECT'],
+        title: 'Visionary / CEO',
+        initials: 'BS',
+        certifications: ['GAF Master Elite', 'CertainTeed Shingle Master Premier'],
         complianceStatus: 'green',
         universityProgress: 100,
     }

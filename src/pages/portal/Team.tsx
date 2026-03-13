@@ -1,8 +1,94 @@
 import React, { useState } from 'react';
 import { SEOHead } from '../../components/SEOHead';
 import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import { Target, Trophy, Star, TrendingUp, Calculator, ShieldCheck } from 'lucide-react';
+import { Target, Trophy, Star, TrendingUp, Calculator, ShieldCheck, Users } from 'lucide-react';
 import { teamData } from '../../data/teamData';
+
+// EOS Accountability Chart Data
+const accountabilityChart = {
+    visionary: {
+        seat: 'VISIONARY',
+        name: 'Brad Strawbridge',
+        initials: 'BS',
+        roles: [
+            'Vision & Big Ideas',
+            'Brand Development & Culture',
+            'Growth Strategy',
+            'Large Project Procurement Support',
+        ],
+    },
+    integrator: {
+        seat: 'INTEGRATOR',
+        name: 'Edward Ouielie',
+        initials: 'EO',
+        roles: [
+            'Vision Execution',
+            'LMA-FBA',
+            'Large Project Procurement',
+            'Leadership Development',
+        ],
+    },
+    departments: [
+        {
+            seat: 'SALES & CUSTOMER EXPERIENCE',
+            name: 'Jason Light',
+            initials: 'JL',
+            roles: [
+                'LMA-FBA (Sales Team)',
+                'Revenue-Pipeline Management',
+                'Customer Experience-Reviews',
+                'Sales Process-Training',
+            ],
+        },
+        {
+            seat: 'OPERATIONS',
+            name: 'Tiffany Strawbridge',
+            initials: 'TS',
+            roles: [
+                'LMA-FBA (Production)',
+                'Vendor Management: (Subs), (Manufacturers), (Distro)',
+                'Safety',
+                'Job Profitability',
+            ],
+        },
+        {
+            seat: 'ADMIN & FINANCE',
+            name: 'Airus',
+            initials: 'AI',
+            roles: [
+                'Compliance-Legal',
+                'Accounting-Scorecard',
+                'Payroll-HR',
+                'Budgets-Forecasting-PnL',
+            ],
+        },
+    ],
+};
+
+const OrgCard: React.FC<{ seat: string; name: string; initials: string; roles: string[] }> = ({ seat, name, initials, roles }) => (
+    <div className="bg-white border border-border rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden w-full max-w-xs mx-auto">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted">
+            <h3 className="text-xs font-black uppercase tracking-widest text-navy-950">{seat}</h3>
+        </div>
+        <div className="flex items-center space-x-3 px-4 py-3 bg-navy-50/50 border-b border-border">
+            <div className="w-8 h-8 rounded-md bg-secondary/10 text-secondary flex items-center justify-center text-xs font-black">
+                {initials}
+            </div>
+            <span className="text-sm font-bold text-navy-950">{name}</span>
+        </div>
+        <div className="px-4 py-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-2">Roles</p>
+            <ul className="space-y-1.5">
+                {roles.map((role, idx) => (
+                    <li key={idx} className="text-xs text-navy-800 font-medium flex items-start">
+                        <span className="text-muted-foreground mr-1.5">•</span>
+                        {role}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    </div>
+);
 
 const TeamDashboard: React.FC = () => {
     const [activeTrackerRole, setActiveTrackerRole] = useState(teamData.dailyTrackers[0].role);
@@ -20,11 +106,48 @@ const TeamDashboard: React.FC = () => {
                     <div>
                         <span className="text-secondary font-bold tracking-widest uppercase text-xs mb-2 block">Performance Hub</span>
                         <h1 className="text-4xl font-black font-display uppercase tracking-tight mb-2">
-                            Team & Activity
+                            Team & Accountability
                         </h1>
                         <p className="text-white/80 max-w-2xl">
-                            Daily activity trackers, commission schedules, coaching rubrics, and the Watch Club prestige tiers.
+                            Accountability chart, daily activity trackers, commission schedules, coaching rubrics, and the Watch Club prestige tiers.
                         </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* EOS Accountability Chart */}
+            <div>
+                <div className="flex items-center space-x-3 mb-6">
+                    <Users className="w-6 h-6 text-secondary" />
+                    <h2 className="text-2xl font-black font-display text-navy-950 uppercase tracking-tight">Accountability Chart</h2>
+                </div>
+
+                <div className="flex flex-col items-center space-y-6">
+                    {/* Visionary */}
+                    <OrgCard {...accountabilityChart.visionary} />
+
+                    {/* Connector */}
+                    <div className="w-px h-8 bg-border relative">
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-muted border border-border flex items-center justify-center">
+                            <div className="w-2 h-2 rounded-full bg-navy-300"></div>
+                        </div>
+                    </div>
+
+                    {/* Integrator */}
+                    <OrgCard {...accountabilityChart.integrator} />
+
+                    {/* Connector */}
+                    <div className="w-px h-8 bg-border relative">
+                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-muted border border-border flex items-center justify-center">
+                            <div className="w-2 h-2 rounded-full bg-navy-300"></div>
+                        </div>
+                    </div>
+
+                    {/* Department Heads */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+                        {accountabilityChart.departments.map((dept, idx) => (
+                            <OrgCard key={idx} {...dept} />
+                        ))}
                     </div>
                 </div>
             </div>
