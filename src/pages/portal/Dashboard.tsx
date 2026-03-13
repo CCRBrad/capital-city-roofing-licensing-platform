@@ -24,8 +24,6 @@ import {
     AlertCircle,
     Clock,
     Info,
-    Calendar,
-    Phone,
     Settings,
     Target,
     BarChart3
