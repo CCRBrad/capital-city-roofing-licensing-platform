@@ -35,6 +35,7 @@ const PrivacyPolicy = lazy(() => import('./pages/public/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/public/TermsOfService'));
 const Playbook = lazy(() => import('./pages/public/Playbook'));
 const BlogPost = lazy(() => import('./pages/public/BlogPost').then(m => ({ default: m.BlogPost })));
+const Accessibility = lazy(() => import('./pages/public/Accessibility'));
 
 // Portal Pages
 const Dashboard = lazy(() => import('./pages/portal/Dashboard'));
@@ -92,6 +93,7 @@ function App() {
                 <Route path="resources/:slug" element={<BlogPost />} />
                 <Route path="privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="terms-of-service" element={<TermsOfService />} />
+                <Route path="accessibility" element={<Accessibility />} />
                 <Route path="playbook" element={<Playbook />} />
                 <Route path="/partner-login" element={<PartnerLogin />} />
               </Route>
