@@ -102,7 +102,7 @@ export const HeroLeadForm: React.FC = () => {
                             Processing...
                         </>
                     ) : (
-                        'Start My Application'
+                        'Apply to Become a Partner'
                     )}
                 </Button>
                 <p className="text-white/40 text-[10px] mt-2 text-center leading-relaxed">

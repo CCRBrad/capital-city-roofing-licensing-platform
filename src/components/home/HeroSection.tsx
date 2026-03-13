@@ -56,7 +56,7 @@ export const HeroSection: React.FC = () => {
 
                     <ul className="space-y-3 pt-2">
                         {[
-                            { icon: TrendingUp, text: "Designed for Higher-Margin Operations" },
+                            { icon: TrendingUp, text: "Designed for Operational Efficiency" },
                             { icon: Zap, text: "Structured to Launch Faster Than Building Alone" },
                             { icon: ShieldCheck, text: "Protected Market Territory & Partner Support" },
                             { icon: CheckCircle2, text: "Brand, Training, Systems & Back-Office Included" },

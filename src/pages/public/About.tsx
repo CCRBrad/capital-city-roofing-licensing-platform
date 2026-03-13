@@ -8,8 +8,8 @@ const About: React.FC = () => {
     return (
         <>
             <SEOHead
-                title="About Capital City Roofing"
-                description="Learn about the leadership, history, and core values of the Capital City Roofing Licensed Operating Platform."
+                title="About the CCR Licensing Platform | Capital City Roofing"
+                description="Capital City Roofing was forged on the roofs and in the living rooms of homeowners. Discover the story behind the CCR Licensing Platform."
             />
 
             {/* Hero */}
@@ -34,10 +34,10 @@ const About: React.FC = () => {
                             "Excellence in Roofing, Powered by Innovation & Integrity."
                         </h2>
                         <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                            Capital City Roofing wasn't built in a corporate boardroom by private equity. It was forged on the roofs and in the living rooms of homeowners. After years of running an aggressive, high-margin roofing business, we recognized that the hardest part of scaling isn't selling—it's the back office.
+                            Capital City Roofing wasn't built in a corporate boardroom by private equity. It was forged on the roofs and in the living rooms of homeowners. After years of running a high-performing roofing operation, we recognized that the hardest part of scaling isn't selling—it's the back office.
                         </p>
                         <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                            We centralized production, estimating, and supplements, wrapping it in a cutting-edge AI tech stack. Now, we're sharing this exact blueprint with ambitious operators across the country.
+                            We centralized production, estimating, and supplements, integrating AI-enabled CRM, estimating, and automation tools into a unified operating platform. Now, we're sharing this exact blueprint with ambitious operators across the country.
                         </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

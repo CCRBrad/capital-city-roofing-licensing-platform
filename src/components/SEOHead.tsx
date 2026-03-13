@@ -9,6 +9,7 @@ interface SEOHeadProps {
     schema?: Record<string, any> | Record<string, any>[];
     breadcrumbs?: Array<{ name: string; url: string }>;
     type?: 'website' | 'article';
+    noIndex?: boolean;
 }
 
 const defaultOgImage = 'https://capitalcityroofing.net/og-image.webp';
@@ -22,6 +23,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     schema,
     breadcrumbs,
     type = 'website',
+    noIndex = false,
 }) => {
     const fullTitle = `${title} | ${siteName}`;
     const baseUrl = 'https://capitalcityroofing.net';
@@ -58,6 +60,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         <Helmet>
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
+            {noIndex && <meta name="robots" content="noindex, nofollow" />}
             {canonicalUrl && <link rel="canonical" href={url} />}
 
             {/* Open Graph */}

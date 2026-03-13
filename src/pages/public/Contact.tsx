@@ -6,8 +6,8 @@ const Contact: React.FC = () => {
     return (
         <>
             <SEOHead
-                title="Contact Us | Capital City Roofing"
-                description="Get In Touch with Capital City Roofing"
+                title="Contact CCR Licensing"
+                description="Get in touch with Capital City Roofing's licensing team. We're here to answer questions about partnership opportunities and the operator model."
             />
 
             <section className="bg-navy-950 text-white py-24 md:py-32 relative text-center">

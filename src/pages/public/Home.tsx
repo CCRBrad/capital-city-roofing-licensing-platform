@@ -152,7 +152,7 @@ const Home: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
                             { icon: Award, title: 'Real-World Operating Background', desc: 'Built from an active roofing operation — not a corporate blueprint or theoretical model.' },
-                            { icon: TrendingUp, title: 'Operator-Focused Economics', desc: 'Designed to support higher-margin operations through centralized systems and disciplined processes.' },
+                            { icon: TrendingUp, title: 'Operator-Focused Economics', desc: 'Designed to reduce overhead through centralized systems and disciplined processes.' },
                             { icon: ShieldCheck, title: 'Protected Markets', desc: 'Partners receive exclusive, protected market territories. We do not over-license areas.' },
                             { icon: Wrench, title: 'Technology-Enabled Systems', desc: 'Access structured workflows, CRM, estimating tools, and AI-powered automation.' },
                             { icon: Star, title: 'Premium Brand & Certifications', desc: 'Operate under a brand with GAF Master Elite, CertainTeed ShingleMaster Premier, and industry affiliations.' },
