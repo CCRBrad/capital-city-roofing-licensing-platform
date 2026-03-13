@@ -37,20 +37,29 @@ const Home: React.FC = () => {
             <SEOHead
                 title="We Run the Company. You Sell the Roofs."
                 description="Capital City Roofing Licensed Operating Platform. A franchise alternative for qualified operators who want brand, systems, training, and real support."
-                schema={{
-                    "@context": "https://schema.org",
-                    "@type": "Organization",
-                    "name": "Capital City Roofing",
-                    "url": "https://capitalcityroofing.net",
-                    "logo": "https://capitalcityroofing.net/logo.png",
-                    "contactPoint": {
-                        "@type": "ContactPoint",
-                        "telephone": "(470) 766-3285",
-                        "contactType": "sales",
-                        "areaServed": "US",
-                        "availableLanguage": "English"
+                canonicalUrl="/"
+                schema={[
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Capital City Roofing",
+                        "url": "https://licensing.capitalcityroofing.net",
+                        "logo": "https://licensing.capitalcityroofing.net/logo.png",
+                        "contactPoint": {
+                            "@type": "ContactPoint",
+                            "telephone": "(470) 766-3285",
+                            "contactType": "sales",
+                            "areaServed": "US",
+                            "availableLanguage": "English"
+                        }
+                    },
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "Capital City Roofing Licensing",
+                        "url": "https://licensing.capitalcityroofing.net"
                     }
-                }}
+                ]}
             />
 
             {/* Hero Section */}

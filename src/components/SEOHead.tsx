@@ -12,8 +12,35 @@ interface SEOHeadProps {
     noIndex?: boolean;
 }
 
-const defaultOgImage = 'https://capitalcityroofing.net/og-image.webp';
-const siteName = 'Capital City Roofing Licensed Operating Platform';
+// Hostname-aware configuration
+function getSiteConfig() {
+    const hostname = typeof window !== 'undefined' ? window.location.hostname : '';
+
+    if (hostname.startsWith('portal.') || hostname.startsWith('portal-')) {
+        return {
+            baseUrl: 'https://portal.capitalcityroofing.net',
+            siteName: 'Capital City Roofing Partner Portal',
+            forceNoIndex: true,
+        };
+    }
+
+    if (hostname.startsWith('licensing.') || hostname.startsWith('licensing-')) {
+        return {
+            baseUrl: 'https://licensing.capitalcityroofing.net',
+            siteName: 'Capital City Roofing Licensing',
+            forceNoIndex: false,
+        };
+    }
+
+    // Fallback for development / Vercel preview / legacy
+    return {
+        baseUrl: 'https://licensing.capitalcityroofing.net',
+        siteName: 'Capital City Roofing Licensing',
+        forceNoIndex: false,
+    };
+}
+
+const defaultOgImage = 'https://licensing.capitalcityroofing.net/og-image.webp';
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
     title,
@@ -25,9 +52,15 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     type = 'website',
     noIndex = false,
 }) => {
-    const fullTitle = `${title} | ${siteName}`;
-    const baseUrl = 'https://capitalcityroofing.net';
-    const url = canonicalUrl ? `${baseUrl}${canonicalUrl}` : baseUrl;
+    const config = getSiteConfig();
+    const fullTitle = `${title} | ${config.siteName}`;
+    const shouldNoIndex = noIndex || config.forceNoIndex;
+
+    // Self-referencing canonical from current path, or explicit override
+    const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+    const url = canonicalUrl
+        ? `${config.baseUrl}${canonicalUrl}`
+        : `${config.baseUrl}${pathname === '/' ? '' : pathname}`;
 
     // Generate BreadcrumbList Schema if breadcrumbs are provided
     const breadcrumbSchema = breadcrumbs
@@ -38,7 +71,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
                 '@type': 'ListItem',
                 position: index + 1,
                 name: crumb.name,
-                item: `${baseUrl}${crumb.url}`,
+                item: `${config.baseUrl}${crumb.url}`,
             })),
         }
         : null;
@@ -60,8 +93,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         <Helmet>
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
-            {noIndex && <meta name="robots" content="noindex, nofollow" />}
-            {canonicalUrl && <link rel="canonical" href={url} />}
+            {shouldNoIndex && <meta name="robots" content="noindex, nofollow" />}
+            <link rel="canonical" href={url} />
 
             {/* Open Graph */}
             <meta property="og:title" content={fullTitle} />
@@ -69,7 +102,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
             <meta property="og:type" content={type} />
             <meta property="og:url" content={url} />
             <meta property="og:image" content={ogImage} />
-            <meta property="og:site_name" content={siteName} />
+            <meta property="og:site_name" content={config.siteName} />
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />

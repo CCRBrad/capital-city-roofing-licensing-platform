@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://licensing.capitalcityroofing.net/sitemap.xml

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth, type UserRole } from '../../contexts/AuthContext';
 import {
@@ -90,6 +91,10 @@ export const PortalLayout: React.FC = () => {
 
     return (
         <div className="flex h-screen bg-muted overflow-hidden">
+            {/* Global noindex for all portal routes */}
+            <Helmet>
+                <meta name="robots" content="noindex, nofollow" />
+            </Helmet>
             {/* Sidebar */}
             <aside
                 className={`${sidebarOpen ? 'w-64' : 'w-20'} 
