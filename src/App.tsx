@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './contexts/AuthContext';
@@ -124,6 +125,7 @@ function App() {
           </Suspense>
         </BrowserRouter>
       </AuthProvider>
+      <Analytics />
     </HelmetProvider>
   );
 }
