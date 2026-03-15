@@ -35,7 +35,7 @@ const Leaderboard: React.FC = () => {
                         Leaderboard
                     </h1>
                     <p className="text-white/80 max-w-2xl">
-                        See how you stack up against your peers. Earn XP by completing modules, acing quizzes, and conquering Boss Battles.
+                        See how you stack up against your peers. Earn XP by completing daily modules, acing quizzes, and passing the Final Certification Exam.
                     </p>
                 </div>
             </div>
@@ -86,6 +86,7 @@ const Leaderboard: React.FC = () => {
                                 <th className="px-6 py-4 text-left">Rank</th>
                                 <th className="px-6 py-4 text-left">Name</th>
                                 <th className="px-6 py-4 text-left">Level</th>
+                                <th className="px-6 py-4 text-center">Days</th>
                                 <th className="px-6 py-4 text-right">XP</th>
                             </tr>
                         </thead>
@@ -119,6 +120,11 @@ const Leaderboard: React.FC = () => {
                                     <td className="px-6 py-4">
                                         <span className="bg-navy-100 text-navy-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-navy-200">
                                             {user.level}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
+                                        <span className="text-sm font-bold text-navy-950">
+                                            {Object.values(user.days).filter(d => d.completed).length}/14
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 text-right">

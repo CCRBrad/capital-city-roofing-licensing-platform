@@ -114,10 +114,10 @@ export const Dashboard: React.FC = () => {
             title: 'Training',
             icon: GraduationCap,
             items: [
-                { label: 'Week 1 complete', done: completedModules >= 4 },
-                { label: 'Week 2 complete', done: completedModules >= 8 },
-                { label: 'Core SOP review complete', done: false },
-                { label: 'Sales readiness confirmed', done: false },
+                { label: 'Days 1–7 complete (Foundations)', done: completedModules >= 7 },
+                { label: 'Days 8–13 complete (Insurance & Systems)', done: completedModules >= 13 },
+                { label: 'Day 14 Final Exam passed', done: completedModules >= 14 },
+                { label: 'Sales readiness confirmed', done: completedModules >= 14 },
             ]
         },
         {
@@ -143,8 +143,8 @@ export const Dashboard: React.FC = () => {
     // Training always first if incomplete
     if (completedModules < totalModules) {
         nextActions.push({
-            label: completedModules === 0 ? 'Start Module 1.1: The Capital City Way' : `Continue Training — Module ${Math.min(completedModules + 1, totalModules)}`,
-            context: completedModules === 0 ? 'Required before Week 1 certification • ~18 min' : `${totalModules - completedModules} modules remaining • Unlocks next certification level`,
+            label: completedModules === 0 ? 'Start Day 1: The Capital City Way' : `Continue Training — Day ${Math.min(completedModules + 1, totalModules)}`,
+            context: completedModules === 0 ? 'Required before Day 7 Gate • ~18 min' : `${totalModules - completedModules} days remaining • Unlocks next certification level`,
             link: '/portal/university',
             icon: GraduationCap,
             priority: 'high'
@@ -456,7 +456,7 @@ export const Dashboard: React.FC = () => {
                                 {/* Progress bar */}
                                 <div className="mb-4">
                                     <div className="flex justify-between text-sm mb-2">
-                                        <span className="font-bold">{completedModules}/{totalModules} Modules</span>
+                                        <span className="font-bold">{completedModules}/{totalModules} Days</span>
                                         <span className="text-white/60">{trainingPct}%</span>
                                     </div>
                                     <div className="w-full bg-white/10 rounded-full h-2">
@@ -466,28 +466,28 @@ export const Dashboard: React.FC = () => {
 
                                 {/* What unlocks next */}
                                 <div className="space-y-2 mb-5">
-                                    {completedModules < 4 && (
+                                    {completedModules < 7 && (
                                         <div className="flex items-start text-xs text-white/70">
                                             <Zap className="w-3 h-3 text-[hsl(38,75%,50%)] mr-2 mt-0.5 shrink-0" />
-                                            <span>Week 1 complete → unlocks core sales workflow access</span>
+                                            <span>Day 7 complete → unlocks lead shadowing access</span>
                                         </div>
                                     )}
-                                    {completedModules >= 4 && completedModules < 8 && (
+                                    {completedModules >= 7 && completedModules < 13 && (
                                         <div className="flex items-start text-xs text-white/70">
                                             <Zap className="w-3 h-3 text-[hsl(38,75%,50%)] mr-2 mt-0.5 shrink-0" />
-                                            <span>Week 2 complete → unlocks advanced pipeline tools</span>
+                                            <span>Day 13 complete → unlocks Final Certification Exam</span>
                                         </div>
                                     )}
-                                    {completedModules >= 8 && completedModules < 12 && (
+                                    {completedModules >= 13 && completedModules < 14 && (
                                         <div className="flex items-start text-xs text-white/70">
                                             <Zap className="w-3 h-3 text-[hsl(38,75%,50%)] mr-2 mt-0.5 shrink-0" />
-                                            <span>All modules complete → full Certified status</span>
+                                            <span>Pass Day 14 Final Exam → CCU Sales Certified</span>
                                         </div>
                                     )}
-                                    {completedModules >= 12 && (
+                                    {completedModules >= 14 && (
                                         <div className="flex items-start text-xs text-success">
                                             <CheckCircle className="w-3 h-3 mr-2 mt-0.5 shrink-0" />
-                                            <span>All certifications complete — full operator status</span>
+                                            <span>CCU Certified — full operator status</span>
                                         </div>
                                     )}
                                 </div>

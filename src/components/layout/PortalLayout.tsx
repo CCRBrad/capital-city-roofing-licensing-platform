@@ -15,7 +15,9 @@ import {
     ShieldAlert,
     Menu,
     X,
-    LogOut
+    LogOut,
+    Crosshair,
+    Target
 } from 'lucide-react';
 
 interface NavItem {
@@ -47,6 +49,7 @@ const navGroups: NavGroup[] = [
     {
         label: 'Operate',
         items: [
+            { name: 'Daily Activity', path: '/portal/daily-activity', icon: Target, roles: ['employee', 'licensee', 'admin'] },
             { name: 'Assets', path: '/portal/assets', icon: Files, roles: ['licensee', 'employee', 'admin'] },
             { name: 'Production', path: '/portal/production', icon: Wrench, roles: ['licensee', 'admin'] },
             { name: 'Team', path: '/portal/team', icon: Users, roles: ['licensee', 'admin'] },
@@ -63,6 +66,7 @@ const navGroups: NavGroup[] = [
         label: 'Account',
         items: [
             { name: 'Profile', path: '/portal/profile', icon: UserCircle, roles: ['prospect', 'licensee', 'employee', 'admin'] },
+            { name: 'War Room', path: '/portal/war-room', icon: Crosshair, roles: ['admin'] },
             { name: 'Admin Panel', path: '/portal/admin', icon: ShieldAlert, roles: ['admin'] },
         ]
     },

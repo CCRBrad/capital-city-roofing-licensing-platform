@@ -53,6 +53,8 @@ const Leaderboard = lazy(() => import('./pages/portal/Leaderboard'));
 const Certificates = lazy(() => import('./pages/portal/Certificates'));
 const Syllabus = lazy(() => import('./pages/portal/Syllabus'));
 const Support = lazy(() => import('./pages/portal/Support'));
+const ManagerWarRoom = lazy(() => import('./pages/portal/ManagerWarRoom'));
+const DailyActivity = lazy(() => import('./pages/portal/DailyActivity'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const Fallback = () => (
@@ -115,6 +117,8 @@ function App() {
                 <Route path="support" element={<Support />} />
                 <Route path="profile" element={<Profile />} />
                 <Route path="admin" element={<Admin />} />
+                <Route path="war-room" element={<ManagerWarRoom />} />
+                <Route path="daily-activity" element={<DailyActivity />} />
               </Route>
 
               {/* 404 Catch-All */}
