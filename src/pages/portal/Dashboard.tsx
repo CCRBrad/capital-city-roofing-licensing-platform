@@ -64,10 +64,10 @@ interface ChecklistCategory {
 }
 
 // --- Certification levels ---
-const getCertificationStatus = (completedModules: number) => {
-    if (completedModules >= 12) return { label: 'Certified', color: 'text-success', bg: 'bg-success/10' };
-    if (completedModules >= 8) return { label: 'Active', color: 'text-blue-500', bg: 'bg-blue-500/10' };
-    if (completedModules >= 4) return { label: 'Provisional', color: 'text-[hsl(38,75%,50%)]', bg: 'bg-[hsl(38,75%,50%)]/10' };
+const getCertificationStatus = (completedDays: number) => {
+    if (completedDays >= 14) return { label: 'Certified', color: 'text-success', bg: 'bg-success/10' };
+    if (completedDays >= 8) return { label: 'Active', color: 'text-blue-500', bg: 'bg-blue-500/10' };
+    if (completedDays >= 4) return { label: 'Provisional', color: 'text-[hsl(38,75%,50%)]', bg: 'bg-[hsl(38,75%,50%)]/10' };
     return { label: 'Onboarding', color: 'text-white/60', bg: 'bg-white/10' };
 };
 
@@ -77,8 +77,8 @@ export const Dashboard: React.FC = () => {
 
     if (!user) return null;
 
-    const completedModules = Object.values(progress.modules).filter(m => m.completed).length;
-    const totalModules = 12;
+    const completedModules = Object.values(progress.days).filter(d => d.completed).length;
+    const totalModules = 14;
     const trainingPct = Math.round((completedModules / totalModules) * 100);
     const isEarlyStage = trainingPct < 50;
     const certStatus = getCertificationStatus(completedModules);

@@ -1,38 +1,41 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { DAY_ORDER } from '../data/universityContent';
+import { PASS_THRESHOLD, FINAL_EXAM_THRESHOLD } from '../data/universityQuizzes';
 
 // --- Types ---
 export type UserLevel = 'Trainee' | 'Associate' | 'Specialist' | 'Expert' | 'Master' | 'Elite';
+export type UserTag = 'CCU – Sales Certified' | 'CCU – At Risk' | 'CCU – Non-Compliant';
 
 export interface Badge {
     id: string;
     name: string;
     description: string;
-    icon: string; // emoji
-    earnedAt?: string; // ISO date
+    icon: string;
+    earnedAt?: string;
 }
 
 export interface QuizAttempt {
-    moduleId: string;
+    dayId: string;
     score: number;
     totalQuestions: number;
     passed: boolean;
     attemptedAt: string;
 }
 
-export interface ModuleProgress {
-    moduleId: string;
-    completed: boolean;
-    completedAt?: string;
-    timeSpentMinutes: number;
+export interface DayProgress {
+    dayId: string;
+    videoWatched: boolean;
+    checklistComplete: boolean;
+    acknowledgementSigned: boolean;
     quizAttempts: QuizAttempt[];
     bestQuizScore: number;
-}
-
-export interface WeekProgress {
-    week: number;
-    bossBattlePassed: boolean;
-    bossBattlePassedAt?: string;
-    certificateEarned: boolean;
+    softLocked: boolean;
+    softLockVideoRewatched: boolean;
+    hardLocked: boolean;
+    managerOverrideUsed: boolean;
+    killSwitched: boolean;
+    completed: boolean;
+    completedAt?: string;
 }
 
 export interface UserProgress {
@@ -40,27 +43,40 @@ export interface UserProgress {
     displayName: string;
     xp: number;
     level: UserLevel;
-    modules: Record<string, ModuleProgress>;
-    weeks: Record<number, WeekProgress>;
+    days: Record<string, DayProgress>;
     badges: Badge[];
+    tags: UserTag[];
     streakDays: number;
     totalTimeSpentMinutes: number;
+    graduated: boolean;
+    graduatedAt?: string;
 }
 
 interface UniversityProgressContextType {
     progress: UserProgress;
-    completeModule: (moduleId: string) => void;
-    submitQuiz: (moduleId: string, score: number, totalQuestions: number) => void;
-    passBossBattle: (week: number) => void;
+    // Day actions
+    markVideoWatched: (dayId: string) => void;
+    markChecklistComplete: (dayId: string) => void;
+    signAcknowledgement: (dayId: string) => void;
+    submitDayQuiz: (dayId: string, score: number, totalQuestions: number) => { passed: boolean; softLocked: boolean; hardLocked: boolean; killSwitched: boolean; graduated: boolean };
+    completeDay: (dayId: string) => void;
+    // Admin
+    managerOverride: (dayId: string) => void;
+    resetSoftLock: (dayId: string) => void;
+    // Queries
+    isDayUnlocked: (dayId: string) => boolean;
+    isDayComplete: (dayId: string) => boolean;
+    getDayProgress: (dayId: string) => DayProgress | undefined;
+    canTakeQuiz: (dayId: string) => boolean;
+    getCompletedDayCount: () => number;
+    // XP
     addXP: (amount: number) => void;
-    isModuleUnlocked: (moduleId: string) => boolean;
-    getModuleProgress: (moduleId: string) => ModuleProgress | undefined;
-    getWeekProgress: (week: number) => WeekProgress | undefined;
+    // Leaderboard
     leaderboard: UserProgress[];
 }
 
 // --- XP Thresholds ---
-const LEVEL_THRESHOLDS: { level: UserLevel; xp: number }[] = [
+export const LEVEL_THRESHOLDS: { level: UserLevel; xp: number }[] = [
     { level: 'Trainee', xp: 0 },
     { level: 'Associate', xp: 500 },
     { level: 'Specialist', xp: 1500 },
@@ -69,37 +85,44 @@ const LEVEL_THRESHOLDS: { level: UserLevel; xp: number }[] = [
     { level: 'Elite', xp: 10000 },
 ];
 
-const MODULE_ORDER = ['1.1', '1.2', '1.3', '1.4', '2.1', '2.2', '2.3', '2.4', '3.1', '3.2', '3.3', '3.4'];
-const BOSS_BATTLES_AFTER: Record<number, string> = { 1: '1.4', 2: '2.4', 3: '3.4' };
-
 // XP Rewards
-const XP_MODULE_COMPLETE = 100;
+const XP_VIDEO_WATCH = 25;
+const XP_CHECKLIST = 25;
+const XP_ACKNOWLEDGEMENT = 25;
 const XP_QUIZ_PASS = 150;
 const XP_QUIZ_PERFECT = 300;
-const XP_BOSS_PASS = 500;
+const XP_DAY_COMPLETE = 100;
+const XP_GRADUATION = 1000;
+
+// --- Enforcement Constants ---
+const SOFT_LOCK_THRESHOLD = 3;     // 3 failures → soft lock
+const HARD_LOCK_THRESHOLD = 2;     // 2 failures on Day 14 → hard lock
+const KILL_SWITCH_THRESHOLD = 3;   // 3 failures on Day 14 → kill switch
+const ETHICS_DAY = 'day-8';
+const FINAL_EXAM_DAY = 'day-14';
+const GATE_DAY = 'day-7';
 
 // --- Badge Definitions ---
 const BADGE_DEFINITIONS: Badge[] = [
-    { id: 'first-module', name: 'First Steps', description: 'Completed your first module', icon: '🎯' },
-    { id: 'week-1-complete', name: 'Foundation Builder', description: 'Completed all Week 1 modules', icon: '🏗️' },
-    { id: 'week-2-complete', name: 'Inspector General', description: 'Completed all Week 2 modules', icon: '🔍' },
-    { id: 'week-3-complete', name: 'Systems Master', description: 'Completed all Week 3 modules', icon: '⚙️' },
-    { id: 'boss-1', name: 'Battle Tested', description: 'Passed your first Boss Battle', icon: '⚔️' },
-    { id: 'boss-2', name: 'Claims Commander', description: 'Passed the Inspections Boss Battle', icon: '🛡️' },
-    { id: 'boss-3', name: 'Certified Elite', description: 'Passed the Final Certification', icon: '🎓' },
+    { id: 'first-day', name: 'First Steps', description: 'Completed your first day of training', icon: '🎯' },
+    { id: 'week-1-complete', name: 'Week 1 Champion', description: 'Completed Days 1-7', icon: '🏗️' },
+    { id: 'week-2-complete', name: 'Week 2 Champion', description: 'Completed Days 8-13', icon: '🔍' },
+    { id: 'ethics-cleared', name: 'Ethics Cleared', description: 'Passed the Insurance Ethics & Compliance module', icon: '⚖️' },
+    { id: 'gate-passed', name: 'Field Ready', description: 'Passed Day 7 — unlocked lead shadowing access', icon: '🚪' },
     { id: 'perfect-score', name: 'Perfectionist', description: 'Scored 100% on any quiz', icon: '💯' },
-    { id: 'speed-demon', name: 'Speed Demon', description: 'Completed a module in under 10 minutes', icon: '⚡' },
-    { id: 'full-graduate', name: 'CCU Graduate', description: 'Completed the entire curriculum', icon: '🏆' },
+    { id: 'streak-7', name: '7-Day Streak', description: 'Trained 7 days in a row', icon: '🔥' },
+    { id: 'ccu-certified', name: 'CCU – Sales Certified', description: 'Passed the Final Certification Exam', icon: '🎓' },
+    { id: 'full-graduate', name: 'CCU Graduate', description: 'Completed the entire 14-day curriculum', icon: '🏆' },
 ];
 
 // --- Simulated leaderboard peers ---
 const MOCK_LEADERBOARD: UserProgress[] = [
-    { userId: 'user-2', displayName: 'Marcus Johnson', xp: 4200, level: 'Expert', modules: {}, weeks: {}, badges: [], streakDays: 12, totalTimeSpentMinutes: 920 },
-    { userId: 'user-3', displayName: 'Sarah Chen', xp: 3800, level: 'Expert', modules: {}, weeks: {}, badges: [], streakDays: 8, totalTimeSpentMinutes: 840 },
-    { userId: 'user-4', displayName: 'Devon Patel', xp: 2900, level: 'Specialist', modules: {}, weeks: {}, badges: [], streakDays: 5, totalTimeSpentMinutes: 650 },
-    { userId: 'user-5', displayName: 'Jasmine Torres', xp: 2100, level: 'Specialist', modules: {}, weeks: {}, badges: [], streakDays: 3, totalTimeSpentMinutes: 480 },
-    { userId: 'user-6', displayName: 'Tyler Brooks', xp: 1400, level: 'Associate', modules: {}, weeks: {}, badges: [], streakDays: 7, totalTimeSpentMinutes: 310 },
-    { userId: 'user-7', displayName: 'Amanda Wright', xp: 800, level: 'Associate', modules: {}, weeks: {}, badges: [], streakDays: 2, totalTimeSpentMinutes: 190 },
+    { userId: 'user-2', displayName: 'Marcus Johnson', xp: 4200, level: 'Expert', days: {}, badges: [], tags: [], streakDays: 12, totalTimeSpentMinutes: 920, graduated: false },
+    { userId: 'user-3', displayName: 'Sarah Chen', xp: 3800, level: 'Expert', days: {}, badges: [], tags: [], streakDays: 8, totalTimeSpentMinutes: 840, graduated: false },
+    { userId: 'user-4', displayName: 'Devon Patel', xp: 2900, level: 'Specialist', days: {}, badges: [], tags: [], streakDays: 5, totalTimeSpentMinutes: 650, graduated: false },
+    { userId: 'user-5', displayName: 'Jasmine Torres', xp: 2100, level: 'Specialist', days: {}, badges: [], tags: [], streakDays: 3, totalTimeSpentMinutes: 480, graduated: false },
+    { userId: 'user-6', displayName: 'Tyler Brooks', xp: 1400, level: 'Associate', days: {}, badges: [], tags: [], streakDays: 7, totalTimeSpentMinutes: 310, graduated: false },
+    { userId: 'user-7', displayName: 'Amanda Wright', xp: 800, level: 'Associate', days: {}, badges: [], tags: [], streakDays: 2, totalTimeSpentMinutes: 190, graduated: false },
 ];
 
 function calculateLevel(xp: number): UserLevel {
@@ -110,11 +133,28 @@ function calculateLevel(xp: number): UserLevel {
     return level;
 }
 
-function getNextLevelXP(currentXP: number): number {
+export function getNextLevelXP(currentXP: number): number {
     for (const threshold of LEVEL_THRESHOLDS) {
         if (currentXP < threshold.xp) return threshold.xp;
     }
     return LEVEL_THRESHOLDS[LEVEL_THRESHOLDS.length - 1].xp;
+}
+
+function createDefaultDayProgress(dayId: string): DayProgress {
+    return {
+        dayId,
+        videoWatched: false,
+        checklistComplete: false,
+        acknowledgementSigned: false,
+        quizAttempts: [],
+        bestQuizScore: 0,
+        softLocked: false,
+        softLockVideoRewatched: false,
+        hardLocked: false,
+        managerOverrideUsed: false,
+        killSwitched: false,
+        completed: false,
+    };
 }
 
 // --- Default Progress ---
@@ -123,18 +163,15 @@ const defaultProgress: UserProgress = {
     displayName: 'You',
     xp: 0,
     level: 'Trainee',
-    modules: {},
-    weeks: {
-        1: { week: 1, bossBattlePassed: false, certificateEarned: false },
-        2: { week: 2, bossBattlePassed: false, certificateEarned: false },
-        3: { week: 3, bossBattlePassed: false, certificateEarned: false },
-    },
+    days: {},
     badges: [],
+    tags: [],
     streakDays: 0,
     totalTimeSpentMinutes: 0,
+    graduated: false,
 };
 
-const STORAGE_KEY = 'ccr-university-progress';
+const STORAGE_KEY = 'ccr-university-progress-v2';
 
 function loadProgress(): UserProgress {
     try {
@@ -152,7 +189,6 @@ const UniversityProgressContext = createContext<UniversityProgressContextType | 
 export const UniversityProgressProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [progress, setProgress] = useState<UserProgress>(loadProgress);
 
-    // Persist to localStorage on every progress change
     useEffect(() => {
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
@@ -173,161 +209,307 @@ export const UniversityProgressProvider: React.FC<{ children: ReactNode }> = ({ 
         });
     }, []);
 
-    const completeModule = useCallback((moduleId: string) => {
+    // --- Day Actions ---
+    const markVideoWatched = useCallback((dayId: string) => {
         setProgress(prev => {
-            const existing = prev.modules[moduleId];
-            if (existing?.completed) return prev;
-
-            const newModules = {
-                ...prev.modules,
-                [moduleId]: {
-                    moduleId,
-                    completed: true,
-                    completedAt: new Date().toISOString(),
-                    timeSpentMinutes: existing?.timeSpentMinutes || 15,
-                    quizAttempts: existing?.quizAttempts || [],
-                    bestQuizScore: existing?.bestQuizScore || 0,
-                }
-            };
-
-            let newXP = prev.xp + XP_MODULE_COMPLETE;
-            let newBadges = [...prev.badges];
-
-            // First module badge
-            const completedCount = Object.values(newModules).filter(m => m.completed).length;
-            if (completedCount === 1) newBadges = earnBadge('first-module', newBadges);
-
-            // Week completion badges
-            const week1Done = ['1.1', '1.2', '1.3', '1.4'].every(id => newModules[id]?.completed);
-            const week2Done = ['2.1', '2.2', '2.3', '2.4'].every(id => newModules[id]?.completed);
-            const week3Done = ['3.1', '3.2', '3.3', '3.4'].every(id => newModules[id]?.completed);
-            if (week1Done) newBadges = earnBadge('week-1-complete', newBadges);
-            if (week2Done) newBadges = earnBadge('week-2-complete', newBadges);
-            if (week3Done) newBadges = earnBadge('week-3-complete', newBadges);
-
-            // Full graduate
-            if (week1Done && week2Done && week3Done) newBadges = earnBadge('full-graduate', newBadges);
-
+            const existing = prev.days[dayId] || createDefaultDayProgress(dayId);
+            if (existing.videoWatched) return prev;
+            const newXP = prev.xp + XP_VIDEO_WATCH;
             return {
                 ...prev,
-                modules: newModules,
                 xp: newXP,
                 level: calculateLevel(newXP),
-                badges: newBadges,
+                days: {
+                    ...prev.days,
+                    [dayId]: { ...existing, videoWatched: true, softLockVideoRewatched: existing.softLocked ? true : existing.softLockVideoRewatched }
+                }
             };
         });
-    }, [earnBadge]);
+    }, []);
 
-    const submitQuiz = useCallback((moduleId: string, score: number, totalQuestions: number) => {
+    const markChecklistComplete = useCallback((dayId: string) => {
         setProgress(prev => {
-            const passed = (score / totalQuestions) >= 0.8;
+            const existing = prev.days[dayId] || createDefaultDayProgress(dayId);
+            if (existing.checklistComplete) return prev;
+            const newXP = prev.xp + XP_CHECKLIST;
+            return {
+                ...prev,
+                xp: newXP,
+                level: calculateLevel(newXP),
+                days: { ...prev.days, [dayId]: { ...existing, checklistComplete: true } }
+            };
+        });
+    }, []);
+
+    const signAcknowledgement = useCallback((dayId: string) => {
+        setProgress(prev => {
+            const existing = prev.days[dayId] || createDefaultDayProgress(dayId);
+            if (existing.acknowledgementSigned) return prev;
+            const newXP = prev.xp + XP_ACKNOWLEDGEMENT;
+            return {
+                ...prev,
+                xp: newXP,
+                level: calculateLevel(newXP),
+                days: { ...prev.days, [dayId]: { ...existing, acknowledgementSigned: true } }
+            };
+        });
+    }, []);
+
+    const submitDayQuiz = useCallback((dayId: string, score: number, totalQuestions: number): { passed: boolean; softLocked: boolean; hardLocked: boolean; killSwitched: boolean; graduated: boolean } => {
+        let result = { passed: false, softLocked: false, hardLocked: false, killSwitched: false, graduated: false };
+
+        setProgress(prev => {
+            const isFinalExam = dayId === FINAL_EXAM_DAY;
+            const isEthics = dayId === ETHICS_DAY;
+            const threshold = isFinalExam ? FINAL_EXAM_THRESHOLD : PASS_THRESHOLD;
+            const scorePercent = score / totalQuestions;
+            const passed = scorePercent >= threshold;
             const isPerfect = score === totalQuestions;
+
             const attempt: QuizAttempt = {
-                moduleId,
+                dayId,
                 score,
                 totalQuestions,
                 passed,
                 attemptedAt: new Date().toISOString(),
             };
 
-            const existing = prev.modules[moduleId] || {
-                moduleId,
-                completed: false,
-                timeSpentMinutes: 0,
-                quizAttempts: [],
-                bestQuizScore: 0,
-            };
-
-            const bestScore = Math.max(existing.bestQuizScore, Math.round((score / totalQuestions) * 100));
+            const existing = prev.days[dayId] || createDefaultDayProgress(dayId);
+            const newAttempts = [...existing.quizAttempts, attempt];
+            const failedAttempts = newAttempts.filter(a => !a.passed).length;
+            const bestScore = Math.max(existing.bestQuizScore, Math.round(scorePercent * 100));
 
             let newXP = prev.xp;
             let newBadges = [...prev.badges];
-            if (passed) newXP += XP_QUIZ_PASS;
-            if (isPerfect) {
-                newXP += XP_QUIZ_PERFECT;
-                newBadges = earnBadge('perfect-score', newBadges);
+            let newTags = [...prev.tags];
+            let newSoftLocked = existing.softLocked;
+            let newHardLocked = existing.hardLocked;
+            let newKillSwitched = existing.killSwitched;
+            let newGraduated = prev.graduated;
+            let newGraduatedAt = prev.graduatedAt;
+
+            if (passed) {
+                newXP += XP_QUIZ_PASS;
+                if (isPerfect) {
+                    newXP += XP_QUIZ_PERFECT;
+                    newBadges = earnBadge('perfect-score', newBadges);
+                }
+
+                // Ethics cleared badge
+                if (isEthics) {
+                    newBadges = earnBadge('ethics-cleared', newBadges);
+                }
+
+                // Gate passed badge
+                if (dayId === GATE_DAY) {
+                    newBadges = earnBadge('gate-passed', newBadges);
+                }
+
+                // Graduation!
+                if (isFinalExam) {
+                    newGraduated = true;
+                    newGraduatedAt = new Date().toISOString();
+                    newXP += XP_GRADUATION;
+                    newBadges = earnBadge('ccu-certified', newBadges);
+                    newBadges = earnBadge('full-graduate', newBadges);
+                    if (!newTags.includes('CCU – Sales Certified')) {
+                        newTags = [...newTags.filter(t => t !== 'CCU – At Risk'), 'CCU – Sales Certified'];
+                    }
+                }
+            } else {
+                // --- FAILURE LOGIC ---
+
+                // ETHICS GATE: Any failure on Day 8 → Kill Switch
+                if (isEthics) {
+                    newKillSwitched = true;
+                    if (!newTags.includes('CCU – Non-Compliant')) {
+                        newTags = [...newTags, 'CCU – Non-Compliant'];
+                    }
+                }
+                // FINAL EXAM: Failure logic
+                else if (isFinalExam) {
+                    if (failedAttempts >= KILL_SWITCH_THRESHOLD) {
+                        // 3rd failure → Kill Switch
+                        newKillSwitched = true;
+                        if (!newTags.includes('CCU – Non-Compliant')) {
+                            newTags = [...newTags, 'CCU – Non-Compliant'];
+                        }
+                    } else if (failedAttempts >= HARD_LOCK_THRESHOLD) {
+                        // 2nd failure → Hard Lock
+                        newHardLocked = true;
+                        if (!newTags.includes('CCU – At Risk')) {
+                            newTags = [...newTags, 'CCU – At Risk'];
+                        }
+                    }
+                }
+                // DAILY QUIZZES: 3 failures → Soft Lock
+                else if (failedAttempts >= SOFT_LOCK_THRESHOLD) {
+                    newSoftLocked = true;
+                }
             }
+
+            result = {
+                passed,
+                softLocked: newSoftLocked,
+                hardLocked: newHardLocked,
+                killSwitched: newKillSwitched,
+                graduated: newGraduated && !prev.graduated,
+            };
 
             return {
                 ...prev,
                 xp: newXP,
                 level: calculateLevel(newXP),
                 badges: newBadges,
-                modules: {
-                    ...prev.modules,
-                    [moduleId]: {
+                tags: newTags,
+                graduated: newGraduated,
+                graduatedAt: newGraduatedAt,
+                days: {
+                    ...prev.days,
+                    [dayId]: {
                         ...existing,
-                        quizAttempts: [...existing.quizAttempts, attempt],
+                        quizAttempts: newAttempts,
                         bestQuizScore: bestScore,
+                        softLocked: newSoftLocked,
+                        hardLocked: newHardLocked,
+                        killSwitched: newKillSwitched,
                     }
                 }
             };
         });
+
+        return result;
     }, [earnBadge]);
 
-    const passBossBattle = useCallback((week: number) => {
+    const completeDay = useCallback((dayId: string) => {
         setProgress(prev => {
-            const weekProgress = prev.weeks[week];
-            if (weekProgress?.bossBattlePassed) return prev;
+            const existing = prev.days[dayId] || createDefaultDayProgress(dayId);
+            if (existing.completed) return prev;
 
-            const newXP = prev.xp + XP_BOSS_PASS;
+            const newXP = prev.xp + XP_DAY_COMPLETE;
             let newBadges = [...prev.badges];
-            if (week === 1) newBadges = earnBadge('boss-1', newBadges);
-            if (week === 2) newBadges = earnBadge('boss-2', newBadges);
-            if (week === 3) newBadges = earnBadge('boss-3', newBadges);
+
+            // Count completed days
+            const newDays = {
+                ...prev.days,
+                [dayId]: { ...existing, completed: true, completedAt: new Date().toISOString() }
+            };
+            const completedCount = Object.values(newDays).filter(d => d.completed).length;
+
+            // Badges
+            if (completedCount === 1) newBadges = earnBadge('first-day', newBadges);
+
+            // Week 1 (Days 1-7)
+            const week1Done = DAY_ORDER.slice(0, 7).every(id => newDays[id]?.completed);
+            if (week1Done) newBadges = earnBadge('week-1-complete', newBadges);
+
+            // Week 2 (Days 8-13)
+            const week2Done = DAY_ORDER.slice(7, 13).every(id => newDays[id]?.completed);
+            if (week2Done) newBadges = earnBadge('week-2-complete', newBadges);
 
             return {
                 ...prev,
                 xp: newXP,
                 level: calculateLevel(newXP),
                 badges: newBadges,
-                weeks: {
-                    ...prev.weeks,
-                    [week]: {
-                        week,
-                        bossBattlePassed: true,
-                        bossBattlePassedAt: new Date().toISOString(),
-                        certificateEarned: true,
-                    }
-                }
+                days: newDays,
             };
         });
     }, [earnBadge]);
 
-    const isModuleUnlocked = useCallback((moduleId: string): boolean => {
-        const idx = MODULE_ORDER.indexOf(moduleId);
-        if (idx === 0) return true; // First module always unlocked
+    // --- Admin Actions ---
+    const managerOverride = useCallback((dayId: string) => {
+        setProgress(prev => {
+            const existing = prev.days[dayId];
+            if (!existing?.hardLocked) return prev;
+            return {
+                ...prev,
+                days: {
+                    ...prev.days,
+                    [dayId]: { ...existing, hardLocked: false, managerOverrideUsed: true }
+                }
+            };
+        });
+    }, []);
 
-        // Check if previous module is completed
-        const prevModuleId = MODULE_ORDER[idx - 1];
-        const prevCompleted = progress.modules[prevModuleId]?.completed;
+    const resetSoftLock = useCallback((dayId: string) => {
+        setProgress(prev => {
+            const existing = prev.days[dayId];
+            if (!existing?.softLocked || !existing.softLockVideoRewatched) return prev;
+            return {
+                ...prev,
+                days: {
+                    ...prev.days,
+                    [dayId]: { ...existing, softLocked: false, softLockVideoRewatched: false }
+                }
+            };
+        });
+    }, []);
 
-        // If previous module is a boss battle gate, check that too
-        for (const [week, lastModule] of Object.entries(BOSS_BATTLES_AFTER)) {
-            if (lastModule === prevModuleId && MODULE_ORDER.indexOf(moduleId) > MODULE_ORDER.indexOf(lastModule)) {
-                return prevCompleted && (progress.weeks[Number(week)]?.bossBattlePassed || false);
-            }
-        }
+    // --- Query Functions ---
+    const isDayUnlocked = useCallback((dayId: string): boolean => {
+        const idx = DAY_ORDER.indexOf(dayId);
+        if (idx === 0) return true; // Day 1 always unlocked
 
-        return prevCompleted || false;
+        // Check if previous day is fully completed
+        const prevDayId = DAY_ORDER[idx - 1];
+        const prevDay = progress.days[prevDayId];
+
+        if (!prevDay) return false;
+
+        return prevDay.completed;
     }, [progress]);
 
-    const getModuleProgress = useCallback((moduleId: string) => progress.modules[moduleId], [progress]);
-    const getWeekProgress = useCallback((week: number) => progress.weeks[week], [progress]);
+    const isDayComplete = useCallback((dayId: string): boolean => {
+        return progress.days[dayId]?.completed || false;
+    }, [progress]);
 
-    // Build leaderboard with current user inserted
+    const getDayProgress = useCallback((dayId: string): DayProgress | undefined => {
+        return progress.days[dayId];
+    }, [progress]);
+
+    const canTakeQuiz = useCallback((dayId: string): boolean => {
+        const day = progress.days[dayId];
+        if (!day) return false;
+
+        // Must have watched video, completed checklist, and signed acknowledgement
+        if (!day.videoWatched || !day.checklistComplete || !day.acknowledgementSigned) return false;
+
+        // Kill switched — no more quizzes ever
+        if (day.killSwitched) return false;
+
+        // Hard locked — needs manager override
+        if (day.hardLocked) return false;
+
+        // Soft locked — needs video re-watch
+        if (day.softLocked && !day.softLockVideoRewatched) return false;
+
+        return true;
+    }, [progress]);
+
+    const getCompletedDayCount = useCallback((): number => {
+        return Object.values(progress.days).filter(d => d.completed).length;
+    }, [progress]);
+
+    // Build leaderboard
     const leaderboard = [...MOCK_LEADERBOARD, progress].sort((a, b) => b.xp - a.xp);
 
     return (
         <UniversityProgressContext.Provider value={{
             progress,
-            completeModule,
-            submitQuiz,
-            passBossBattle,
+            markVideoWatched,
+            markChecklistComplete,
+            signAcknowledgement,
+            submitDayQuiz,
+            completeDay,
+            managerOverride,
+            resetSoftLock,
+            isDayUnlocked,
+            isDayComplete,
+            getDayProgress,
+            canTakeQuiz,
+            getCompletedDayCount,
             addXP,
-            isModuleUnlocked,
-            getModuleProgress,
-            getWeekProgress,
             leaderboard,
         }}>
             {children}
@@ -341,4 +523,4 @@ export const useUniversityProgress = () => {
     return ctx;
 };
 
-export { LEVEL_THRESHOLDS, BADGE_DEFINITIONS, MODULE_ORDER, getNextLevelXP };
+export { BADGE_DEFINITIONS, DAY_ORDER as MODULE_ORDER };

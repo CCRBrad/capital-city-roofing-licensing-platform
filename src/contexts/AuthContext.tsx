@@ -14,6 +14,8 @@ export interface User {
     universityProgress?: number;
     title?: string;
     initials?: string;
+    tags?: string[];
+    canOverrideExam?: boolean;
 }
 
 interface AuthContextType {
@@ -38,6 +40,8 @@ export const teamMembers: User[] = [
         certifications: ['GAF Master Elite', 'CertainTeed Shingle Master Premier'],
         complianceStatus: 'green',
         universityProgress: 100,
+        tags: ['CCU – Sales Certified'],
+        canOverrideExam: true,
     },
     {
         id: '2',
@@ -50,6 +54,8 @@ export const teamMembers: User[] = [
         certifications: [],
         complianceStatus: 'green',
         universityProgress: 100,
+        tags: ['CCU – Sales Certified'],
+        canOverrideExam: true,
     },
     {
         id: '3',
@@ -130,6 +136,8 @@ export const mockUsers: Record<UserRole, User> = {
         certifications: ['GAF Master Elite', 'CertainTeed Shingle Master Premier'],
         complianceStatus: 'green',
         universityProgress: 100,
+        tags: ['CCU – Sales Certified'],
+        canOverrideExam: true,
     }
 };
 
