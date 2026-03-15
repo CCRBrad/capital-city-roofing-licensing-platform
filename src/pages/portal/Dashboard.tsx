@@ -55,12 +55,14 @@ const complianceStatusConfig: Record<ComplianceItem['status'], { label: string; 
 interface ChecklistItem {
     label: string;
     done: boolean;
+    gate?: string;
 }
 
 interface ChecklistCategory {
     title: string;
     icon: typeof Rocket;
     items: ChecklistItem[];
+    phase: string;
 }
 
 // --- Certification levels ---
@@ -88,46 +90,85 @@ export const Dashboard: React.FC = () => {
     const complianceTotal = complianceItems.length;
     const hasComplianceIssues = complianceItems.some(c => c.status === 'action-needed' || c.status === 'missing');
 
-    // --- Launch checklist grouped by category ---
+    // --- 30-Day Onboarding Checklist ---
     const launchCategories: ChecklistCategory[] = [
         {
-            title: 'Business Setup',
-            icon: FileText,
+            title: 'Pre-Day 1: Legal & Financial Readiness',
+            phase: 'PHASE 0',
+            icon: ShieldCheck,
             items: [
-                { label: 'Entity formed (LLC / Corp)', done: true },
-                { label: 'Insurance docs uploaded', done: true },
-                { label: 'Banking / payout setup', done: false },
-                { label: 'Territory agreement signed', done: true },
+                { label: 'Licensing Agreement fully executed', done: true },
+                { label: '$15,000 one-time system buy-in received and cleared', done: true },
+                { label: 'First monthly platform fee scheduled', done: true },
+                { label: 'Royalty reporting method and ACH authorization confirmed', done: true },
+                { label: 'Insurance certificates uploaded and verified', done: true },
+                { label: 'Business entity verified', done: true },
+                { label: 'Official CCR market name approved', done: true, gate: 'Must be 100% complete before access is granted' },
             ]
         },
         {
-            title: 'Systems Setup',
+            title: 'Days 1–7: Brand & System Install',
+            phase: 'PHASE 1',
             icon: Settings,
             items: [
-                { label: 'CRM connected (GoHighLevel)', done: true },
-                { label: 'Estimating tools connected (Roofr)', done: true },
-                { label: 'AI automation enabled', done: false },
-                { label: 'Phone / email configured', done: false },
+                // 1.1 Portal Access & Orientation
+                { label: 'Partner Portal access granted', done: true },
+                { label: 'CCR Mission, Vision, Values & Authority acknowledged', done: true },
+                { label: 'Brand standards acknowledged (no legacy branding)', done: true, gate: 'GATE: Incomplete acknowledgments → portal access suspended' },
+                // 1.2 Brand Transition
+                { label: 'CCR market name finalized', done: true },
+                { label: 'Website redirected or CCR template deployed', done: true },
+                { label: 'Google Business Profile (GBP) updated', done: false },
+                { label: 'CCR email addresses issued & phone numbers assigned', done: true, gate: 'GATE: No legacy branding may remain live after Day 7' },
+                // 1.3 Technology Deployment
+                { label: 'BuilderLync CRM instance deployed & pipelines locked', done: true },
+                { label: 'Automations enabled and call tracking active', done: false },
+                { label: 'AI voice agent ("Meaghan") activated & recording consent confirmed', done: false, gate: 'GATE: No external CRM usage permitted after Day 7' },
             ]
         },
         {
-            title: 'Training',
-            icon: GraduationCap,
-            items: [
-                { label: 'Days 1–7 complete (Foundations)', done: completedModules >= 7 },
-                { label: 'Days 8–13 complete (Insurance & Systems)', done: completedModules >= 13 },
-                { label: 'Day 14 Final Exam passed', done: completedModules >= 14 },
-                { label: 'Sales readiness confirmed', done: completedModules >= 14 },
-            ]
-        },
-        {
-            title: 'Market Activation',
+            title: 'Days 8–14: Sales & Lead Flow Activation',
+            phase: 'PHASE 2',
             icon: Target,
             items: [
-                { label: 'First lead assigned', done: false },
-                { label: 'First appointment scheduled', done: false },
-                { label: 'First estimate delivered', done: false },
-                { label: 'First contract signed', done: false },
+                // 2.1 Sales Training & Certification
+                { label: 'Inspection SOP training completed', done: completedModules >= 7 },
+                { label: 'Estimating standards reviewed', done: false },
+                { label: 'Sales scripts & objection handling framework accepted', done: false, gate: 'GATE: No sales activity without script acknowledgment' },
+                // 2.2 Lead Intake Enforcement
+                { label: 'All lead sources routed exclusively to CCR phone numbers', done: false },
+                { label: 'Speed-to-lead benchmark tested (<60 seconds)', done: false },
+                { label: 'Follow-up cadence & appointment confirmation logic tested', done: false, gate: 'ENFORCEMENT: Any lead bypass = Level 1 compliance violation' },
+                // 2.3 First Live KPI Review
+                { label: 'Speed-to-lead measured & Contact/Appointment rates reviewed', done: false, gate: 'FAILURE: Speed-to-lead > 2 min → mandatory CCR intervention' },
+            ]
+        },
+        {
+            title: 'Days 15–30: Production & KPI Enforcement',
+            phase: 'PHASE 3',
+            icon: Activity,
+            items: [
+                // 3.1 Production SOP Adoption
+                { label: 'Production scheduling SOP implemented', done: false },
+                { label: 'Vendor approval confirmed', done: false },
+                { label: 'Job documentation standards & QA checklist usage confirmed', done: false },
+                // 3.2 Review Generation Enforcement
+                { label: 'Review automation active', done: false },
+                { label: 'Minimum review expectations communicated', done: false, gate: 'ZERO TOLERANCE: Review manipulation → immediate termination' },
+                // 3.3 Weekly Scorecard Compliance
+                { label: 'Week 1 and Week 2 scorecards submitted', done: false },
+                { label: 'Metrics reviewed with Partner Success Manager', done: false, gate: 'FAILURE: Missed scorecard → Level 1 violation' },
+            ]
+        },
+        {
+            title: 'Day 30: Go / No-Go Review',
+            phase: 'PHASE 4',
+            icon: Rocket,
+            items: [
+                { label: 'Speed-to-lead trending < 60 seconds', done: false },
+                { label: 'CRM usage > 95%', done: false },
+                { label: 'Sales activity compliant & Contact rate trending upward', done: false },
+                { label: 'Brand compliance verified', done: false, gate: 'Decision: GO / CONDITIONAL GO / NO-GO' },
             ]
         },
     ];
@@ -320,7 +361,7 @@ export const Dashboard: React.FC = () => {
                                 <div className="flex items-center justify-between">
                                     <CardTitle className="font-heading font-black text-xl text-primary flex items-center">
                                         <CheckCircle2 className="w-5 h-5 text-success mr-2" />
-                                        Launch Readiness
+                                        30-Day Onboarding Checklist
                                     </CardTitle>
                                     <span className="text-sm font-bold text-navy-950">{checklistDone}/{checklistTotal}</span>
                                 </div>
@@ -337,18 +378,28 @@ export const Dashboard: React.FC = () => {
                                             <div className="flex items-center px-6 py-3 bg-muted/30">
                                                 <CategoryIcon className="w-4 h-4 text-muted-foreground mr-2" />
                                                 <span className="text-xs font-black text-navy-800 uppercase tracking-widest flex-1">{category.title}</span>
+                                                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider bg-muted px-2 py-0.5 rounded-full mr-2">{category.phase}</span>
                                                 <span className="text-xs font-bold text-muted-foreground">{catDone}/{category.items.length}</span>
                                             </div>
                                             {category.items.map((item, idx) => (
-                                                <div key={idx} className="flex items-center p-3 px-6">
-                                                    {item.done ? (
-                                                        <CheckCircle className="w-4 h-4 text-success mr-3 shrink-0" />
-                                                    ) : (
-                                                        <div className="w-4 h-4 rounded-full border-2 border-border mr-3 shrink-0"></div>
+                                                <div key={idx}>
+                                                    <div className="flex items-center p-3 px-6">
+                                                        {item.done ? (
+                                                            <CheckCircle className="w-4 h-4 text-success mr-3 shrink-0" />
+                                                        ) : (
+                                                            <div className="w-4 h-4 rounded-full border-2 border-border mr-3 shrink-0"></div>
+                                                        )}
+                                                        <span className={`text-sm ${item.done ? 'text-muted-foreground line-through' : 'text-navy-950 font-medium'}`}>
+                                                            {item.label}
+                                                        </span>
+                                                    </div>
+                                                    {item.gate && !item.done && (
+                                                        <div className="px-6 pb-2 -mt-1">
+                                                            <span className="text-[11px] font-bold text-red-600 bg-red-50 px-2 py-0.5 rounded inline-block ml-7">
+                                                                ⚠️ {item.gate}
+                                                            </span>
+                                                        </div>
                                                     )}
-                                                    <span className={`text-sm ${item.done ? 'text-muted-foreground line-through' : 'text-navy-950 font-medium'}`}>
-                                                        {item.label}
-                                                    </span>
                                                 </div>
                                             ))}
                                         </div>
